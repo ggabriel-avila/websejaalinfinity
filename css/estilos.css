@@ -1,0 +1,318 @@
+h1{
+	font-size:2.2em;
+	color:#232323;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 800;
+	margin-top: 4em;
+}
+h2{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 1.6em;
+	color: #CE5BEA;
+}
+h4{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 800;
+	font-size: 1em;
+	color: #232323;
+	
+}
+p{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 1.1em;
+	color: #232323;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	padding-top: 0.5em;
+	padding-bottom:0.5em;
+	line-height: 1.2em;
+}
+button{
+	border-radius: 0.7em;
+	text-decoration: none;
+	color:white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 1.4em;
+	color:white;
+	background-color:#CE5BEA; 
+	border: 1px none;
+	padding-left: 0.8em;
+	padding-right: 0.8em;
+}
+button a {
+	padding:0.6em;
+	text-decoration: none;
+	color:white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color:white;
+}
+.logoHeader img{
+	width: 216.87px;
+	height: 127.97px;
+	display: flex;
+    justify-content: center;
+    padding-bottom: 2.5em;
+}
+#QuienesSomosSeccion{
+	background-color: white;
+}
+#AnunciosSeccion{
+	background-color: white;
+}
+.anuncios{
+	background-color: #30D7BD;
+	border: 1px none;
+	border-radius: 1em;
+}
+.anuncios p{
+	color:white;
+	padding-bottom: 5em;
+}
+.anuncios h4{
+	padding-top: 1.5em;
+}
+.card{
+	padding-top: 2em;
+}
+
+#infoBecasSeccion{
+	background-color: white;
+}
+#infoBecasSeccion h2 {
+	padding-top: 2.5em; 
+}
+#infoBecasSeccion li{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 1.2em;
+	color: #232323;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	padding-top: 0.5em;
+	padding-bottom:0.5em;
+	line-height: 1.4em;
+
+}
+#infoBecasSeccion img{
+	padding-top: 4em;
+	padding-bottom: 3em;
+	width: 18em;
+}
+#infoBecasSeccion .col-lg-6-img {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+  }
+#infoBecasSeccion hr{
+	background-color: transparent;
+	margin-top:0.1em;
+	margin-bottom: 0.1em;
+}
+
+footer{
+	background-color: #CE5BEA;
+}
+footer h1{
+	margin-top: 0;
+	padding-top: 2em;
+	color: white;
+	font-size: 1.8em;
+}
+footer h2{
+	padding-top:0.5em;
+	font-weight: normal;
+	color: white;
+	font-size: 1.4em;
+}
+footer h3{
+	padding-top:0.5em;
+	font-weight: 300;
+	color: white;
+	font-size: 1.2em;
+}
+.contactoFooter{
+	margin-left: 3em;
+	margin-right: 3em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+@media (max-width: 1200px){
+.navbar-nav li {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  }
+
+.RedesHeader {
+	background-color: white;
+	padding-bottom:2rem;
+	margin-top: 1rem;
+	margin-right: 15rem;
+}
+.RedesHeader img{
+	width:2.5em;
+	}
+
+.RedesHeader a {
+		padding: 1em;
+		}
+
+.logoRedesHeader img{
+	width:2.5em;
+	}
+
+.logoRedesHeader a {
+	padding-left: 1.5em;
+}
+
+@media(min-width: 1600px){
+	.RedesHeader {
+	background-color: white;
+	padding-bottom:2rem;
+	margin-top: 1rem;
+	margin-right: 33rem;
+}
+}
+@media (max-width: 991px){
+.logoRedesHeader img {
+	padding-bottom: 2em;
+}
+.row-grafico{
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+}
+}
+
+/* ADMIN */
+#eliminar{
+	background-color: transparent;
+	padding-right: 0;
+}
+
+#agregar{
+	font-size: 0.9em;
+	background-color: #EA5B5B;
+	border-radius:0.5em;
+}
+.modoadmin{
+	padding-left: 10em;
+
+	justify-content:start;
+	border: 1px none; 
+}
+@media (min-width: 1850px){
+.modoadmin{
+	padding-left: 28em;
+	padding-top: 2em;
+	justify-content:start;
+	border: 1px none; 
+}	
+p{
+	font-size: 1.5em;
+}
+.table > :not(caption) > * > * {
+  font-size: 1.3em;  
+}
+h1{
+	font-size:2.4em;
+}
+h2{
+	font-size: 1.9em;
+}
+#infoBecasSeccion li{
+	font-size:1.5em;
+}
+}
+.signal{
+	background-color: #CE5BEA;
+	border-radius: 0.5em;
+	width:12em;
+}
+.signal h1{
+	font-family: 'Montserrat', sans-serif;
+	color: white;
+	font-weight: 800;
+	font-size: 1em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-right: 1em;
+	margin-left: 1em;
+}
+
+.modoadmin button{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 800;
+	font-size:1em;
+	background-color: #EA5B5B;
+	border-color: transparent;
+}
+.delete{
+	justify-content:end;
+	width:1.2em;
+}
+body{
+	background-color: white;
+}
+.logoHeaderMobile {
+	background-color: white;
+	padding-bottom:2rem;
+	margin-top: 1rem;
+
+}
+.logoHeaderMobile img{
+	width:2.5em;
+	}
+
+.logoHeaderMobile a {
+		padding: 0.3em;
+		}
+.border-top-left-radius{
+	border-top-
+}
+table tr {
+  text-align: center;
+}
+.tablaMobile{
+	padding-left: 14em;
+	padding-right: 14em;}
+	
+@media (max-width: 700px){
+	.tablaMobile{
+	padding-left: 0em;
+	padding-right: 0em;}
+
+	.table > :not(caption) > * > * {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.8em;
+}
+}
+textarea {
+    resize: none;
+}
+
+@media (max-width: 991px){
+	.navbar-collapse {
+  background-color: white;
+}
+.navbar > .container,
+.navbar > .container-fluid,
+.navbar > .container-sm,
+.navbar > .container-md,
+.navbar > .container-lg,
+.navbar > .container-xl,
+.navbar > .container-xxl {
+  background-color: #CE5BEA;
+}
+
+
+}
