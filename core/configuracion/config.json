@@ -1,0 +1,13 @@
+{
+    "credencial":{
+        "baseDeDatos": {
+            "host": "localhost",
+            "database": "sejaal_infinity",
+            "user": "root",
+            "password": ""
+        }
+    },
+    "constante":{
+        "url":"http://sejaal_infinity.com"
+    }
+}
