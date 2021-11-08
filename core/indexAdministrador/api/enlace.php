@@ -4,13 +4,13 @@ include '../../configuracion/baseDeDatos.php';
 include '../../seguridad/apiRespuesta.php';
 include '../../seguridad/usuarioAdministrador.php';
 
-class iniciarSesion extends baseDeDatos
+class enlace extends baseDeDatos
 {
 
     private string $id;
     private string $enlace;
 
-    public function __construct(string $id, string $enlace)
+    public function __construct(string $id = null, string $enlace = null)
     {
         $this->id       = strToLower($id);
         $this->enlace   = strToLower($enlace);
@@ -57,11 +57,11 @@ if (!usuarioAdministrador::estaLogeado()) {
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        $usuario = new iniciarSesion('', '');
+        $usuario = new enlace();
         $usuario->obtener();
         break;
     case 'POST':
-        $usuario = new iniciarSesion($_POST['id'], $_POST['enlace']);
+        $usuario = new enlace($_POST['id'], $_POST['enlace']);
         $usuario->modificar();
         break;
     default:

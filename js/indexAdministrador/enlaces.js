@@ -12,10 +12,8 @@ var enlacesVue = new Vue({
         obtener: function () {
             let url = document.getElementById('apiEnlace').value;
             this.$http.get(url).then((response) => {
-                console.log(response.data.data);
                 this.enlaces = response.data.data
             }, response => {
-                console.log(response.body)
             })
         },
         modificar: function (button) { 
@@ -33,7 +31,8 @@ var enlacesVue = new Vue({
                 $('#' + button.target.id).html(`Aceptar`)
                 herramientaVue.alertas('correcto', 'se realizo el cambio exitosamente');
             }, response => {
-                console.log(response)
+                $('#' + button.target.id).removeAttr('disabled')
+                $('#' + button.target.id).html(`Aceptar`)
             })
         },
         abrirModalEditar: function (id, enlace) {

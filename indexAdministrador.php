@@ -28,6 +28,7 @@ if (!usuarioAdministrador::estaLogeado()) {
   <link href="css/styles.css" rel="stylesheet" />
   <link href="css/estilos.css" rel="stylesheet" />
   <input type="hidden" value="<?= general::constante('url') ?>/core/indexAdministrador/api/enlace" id="apiEnlace">
+  <input type="hidden" value="<?= general::constante('url') ?>/core/indexAdministrador/api/anuncios" id="apiAnuncios">
 </head>
 
 <body id="page-top">
@@ -237,20 +238,20 @@ if (!usuarioAdministrador::estaLogeado()) {
             <div class="modal-body">
               <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Título</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="50" placeholder="Introduce como máximo 50 caracteres" required>
+                <input type="text" class="form-control" v-model="titulo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="50" placeholder="Introduce como máximo 50 caracteres" required>
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
-                <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="10" placeholder="Ex: 10/10/2020" required>
+                <input type="date" class="form-control" v-model="fecha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="10" placeholder="Ex: 10/10/2020" required>
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea maxlength="1000" required>
+                <textarea class="form-control" v-model="descripcion" id="exampleFormControlTextarea1" rows="3"></textarea maxlength="1000" required>
                         </div>
                      </div>
                      <div class="modal-footer">
                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                       <button type="submit" class="btn btn-primary" id="enviar" class="boton">Enviar</button>
+                       <button type="submit" class="btn btn-primary" id="enviar2" class="boton" @click="agregar($event)">Aceptar</button>
                      </div>
                    </div>
                  </div>
@@ -259,145 +260,78 @@ if (!usuarioAdministrador::estaLogeado()) {
 
            <!--ANUNCIOS CONTAINERS-->
                 <div class="row gx-4 gx-lg-5-an">
-                    <div class="col-lg-6 col-12 card">
-                        <div class="anuncios ">
+                    <div class="col-lg-6 col-12 card" v-for="anuncio in anuncios">
+                        <div class="anuncios">
                             <div class="card-body">
                               <div style="display: flex;justify-content: end;">
                                 <!--MODAL MODIFICAR-->
                                 <!-- Button trigger modal -->
-                                 <button type="button" id="eliminar" data-bs-toggle="modal" data-bs-target="#eliminarAnuncio"><img class="delete" src="media/delete.svg" alt="eliminar">
+                                 <button type="button" id="eliminar" data-bs-toggle="modal" data-bs-target="#eliminarAnuncio" @click="id = anuncio.id"><img class="delete" src="media/delete.svg" alt="eliminar">
                                  </button>
-                                 <!-- Modal -->
-                                 <div class="modal fade" id="eliminarAnuncio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                   <div class="modal-dialog">
-                                     <div class="modal-content">
-                                       <div class="modal-header">       
-                                        <h2 class="modal-title" id="staticBackdropLabel">Eliminar anuncio</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                       </div>
-                                       <div class="modal-body">
-                                         <h4>¿Desea eliminar permanentemente este anuncio?</h4>
-                                       </div>
-                                       <div class="modal-footer">
-                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                         <input type="submit" value="Aceptar" class="btn btn-primary" id="enviar" class="boton">
-                                       </div>
-                                     </div>
-                                   </div>
-                                 </div>
                               </div>
-                               <h3 >Ganadores del mes de Octubre</h3>
-                               <h4> <span class="badge bg-light text-dark">NUEVO</span> 31/10/2021
+                               <h3 >{{anuncio.titulo}}</h3>
+                               <h4> <span class="badge bg-light text-dark">NUEVO</span> {{anuncio.fecha}}
                                 <!--MODAL MODIFICAR-->
                                 <!-- Button trigger modal -->
-                                 <button type="button buttonAgregar" id="agregar" data-bs-toggle="modal" data-bs-target="#modificarAnuncio">MODIFICAR
+                                 <button type="button buttonAgregar" id="agregar" @click="abrirModalEditar(anuncio)">MODIFICAR
                                  </button>
-                                 <!-- Modal -->
-                                 <div class="modal fade" id="modificarAnuncio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                   <div class="modal-dialog">
-                                     <div class="modal-content">
-                                       <div class="modal-header">       
-                                        <h5 class="modal-title" id="staticBackdropLabel">Modificar anuncio</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                       </div>
-                                       <div class="modal-body">
-                                         <form>                      
-                                          <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Título</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="50" placeholder="Introduce como máximo 50 caracteres" required>
-                                          </div>
-                                          <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
-                                            <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="10" placeholder="Ex: 10/10/2020" required>
-                                          </div>
-                                          <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea maxlength="1000" required>
-                                          </div>
-                                        </form>
-                                       </div>
-                                       <div class="modal-footer">
-                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                         <input type="submit" value="Enviar" class="btn btn-primary" id="enviar" class="boton">
-                                       </div>
-                                     </div>
-                                   </div>
                                  </div></h4>
-                               <p class="card-text">Quedaron como ganadores de este mes Bruno Bataglini, Joel Vergara, Nanytio, Karou y Danny. ¡Felicidades chicos!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12 card">
-                        <div class="anuncios ">
-                            <div class="card-body">
-                              <div style="display: flex;justify-content: end;">
-                                <!--MODAL MODIFICAR-->
-                                <!-- Button trigger modal -->
-                                 <button type="button" id="eliminar" data-bs-toggle="modal" data-bs-target="#eliminarAnuncio"><img class="delete" src="media/delete.svg" alt="eliminar">
-                                 </button>
-                                 <!-- Modal -->
-                                 <div class="modal fade" id="eliminarAnuncio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                   <div class="modal-dialog">
-                                     <div class="modal-content">
-                                       <div class="modal-header">       
-                                        <h2 class="modal-title" id="staticBackdropLabel">Eliminar anuncio</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                       </div>
-                                       <div class="modal-body">
-                                         <h4>¿Desea eliminar permanentemente este anuncio?</h4>
-                                       </div>
-                                       <div class="modal-footer">
-                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                         <input type="submit" value="Aceptar" class="btn btn-primary" id="enviar" class="boton">
-                                       </div>
-                                     </div>
-                                   </div>
-                                 </div>
-                              </div>
-                               <h3>Ganadores del mes de Octubre</h3>
-                               <h4> <span class="badge bg-light text-dark">NUEVO</span> 31/10/2021
-                               <!--MODAL MODIFICAR-->
-                                <!-- Button trigger modal -->
-                                 <button type="button buttonAgregar" id="agregar" data-bs-toggle="modal" data-bs-target="#modificarAnuncio">MODIFICAR
-                                 </button>
-                                 <!-- Modal -->
-                                 <div class="modal fade" id="modificarAnuncio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                   <div class="modal-dialog">
-                                     <div class="modal-content">
-                                       <div class="modal-header">       
-                                        <h5 class="modal-title" id="staticBackdropLabel">Modificar anuncio</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                       </div>
-                                       <div class="modal-body">
-                                         <form>                      
-                                          <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Título</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="50" placeholder="Introduce como máximo 50 caracteres" required>
-                                          </div>
-                                          <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
-                                            <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="10" placeholder="Ex: 10/10/2020" required>
-                                          </div>
-                                          <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea maxlength="1000" required>
-                                          </div>
-                                        </form>
-                                       </div>
-                                       <div class="modal-footer">
-                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                         <input type="submit" value="Enviar" class="btn btn-primary" id="enviar" class="boton">
-                                       </div>
-                                     </div>
-                                   </div>
-                                 </div></h4>
-                               <p class="card-text">Quedaron como ganadores de este mes Bruno Bataglini, Joel Vergara, Nanytio, Karou y Danny. ¡Felicidades chicos!</p>
+                               <p class="card-text">{{anuncio.descripcion}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--VER MÁS ANUNCIOS-->
                 <div class="flex-center">
+                <!-- Modal -->
+                <div class="modal fade" id="eliminarAnuncio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">       
+                      <h2 class="modal-title" id="staticBackdropLabel">Eliminar anuncio</h2>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h4>¿Desea eliminar permanentemente este anuncio?</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" id="enviar" class="boton" onclick="anunciosVue.eliminar(this)">Enviar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modificarAnuncio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">       
+                      <h5 class="modal-title" id="staticBackdropLabel">Modificar anuncio</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>                      
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="inputGroup-sizing-default">Título</span>
+                          <input type="text" class="form-control" v-model="titulo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="50" placeholder="Introduce como máximo 50 caracteres" required>
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
+                          <input type="date" class="form-control" v-model="fecha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="10" placeholder="Ex: 10/10/2020" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+                          <textarea class="form-control" v-model="descripcion" id="exampleFormControlTextarea1" rows="3"></textarea maxlength="1000" required>
+                        </div>
+                      </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" id="enviar3" class="boton" @click="modificar($event)">Enviar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             <button  type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ver más </button></div>
             <div class="collapse" id="collapseExample">
               <div class="card card-body ">
@@ -1028,5 +962,6 @@ if (!usuarioAdministrador::estaLogeado()) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.6.1/vue-resource.min.js" integrity="sha512-NuUIe6TWdEivPTcxnihx2e6r2xQFEFPrJfpdZWoBwZF6G51Rphcf5r/1ZU/ytj4lyHwLd/YGMix4a5LqAN15XA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="<?= general::constante('url') ?>/js/herramientas.js"></script>
         <script src="<?= general::constante('url') ?>/js/indexAdministrador/enlaces.js"></script>
+        <script src="<?= general::constante('url') ?>/js/indexAdministrador/anuncios.js"></script>
     </body>
 </html>
