@@ -5000,12 +5000,17 @@ textarea.form-control-lg {
 }
 
 .alert-success {
-  color: #0f5132;
-  background-color: #d1e7dd;
+  font-size:1em;
+  color:#232323;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin-top: 4em;
+  color: white;
+  background-color: #7ACCA9;
   border-color: #badbcc;
 }
 .alert-success .alert-link {
-  color: #0c4128;
+  color: #216340;
 }
 
 .alert-info {
@@ -5027,12 +5032,17 @@ textarea.form-control-lg {
 }
 
 .alert-danger {
-  color: #842029;
-  background-color: #f8d7da;
+  font-size:1em;
+  color:#232323;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin-top: 4em;
+  color: white;
+  background-color: #D86060;
   border-color: #f5c2c7;
 }
 .alert-danger .alert-link {
-  color: #6a1a21;
+  color: #8E1C1C;
 }
 
 .alert-light {

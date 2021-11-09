@@ -300,6 +300,21 @@ textarea {
     resize: none;
 }
 
+
+#error404 h1{
+	margin-top:1em;
+}
+.sejaalError{
+	width: 50em;
+}
+
+.emptyState img{
+	width:10em;
+}
+.emptyState h1{
+	font-size:1em;
+}
+
 @media (max-width: 991px){
 	.navbar-collapse {
   background-color: white;
@@ -312,6 +327,15 @@ textarea {
 .navbar > .container-xl,
 .navbar > .container-xxl {
   background-color: #CE5BEA;
+}
+.sejaalError {
+	width: 20em;
+}
+#error404 h1{
+	font-size:1.5em;
+}
+.emptyState img{
+	width: 13em;
 }
 
 
