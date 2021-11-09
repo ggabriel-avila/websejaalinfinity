@@ -25,6 +25,7 @@ if (!usuarioAdministrador::estaLogeado()) {
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;0,800;1,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
   <link href="css/styles.css" rel="stylesheet" />
   <link href="css/estilos.css" rel="stylesheet" />
   <input type="hidden" value="<?= general::constante('url') ?>/core/indexAdministrador/api/enlace" id="apiEnlace">
@@ -260,13 +261,14 @@ if (!usuarioAdministrador::estaLogeado()) {
 
            <!--ANUNCIOS CONTAINERS-->
                 <div class="row gx-4 gx-lg-5-an">
-                    <div class="col-lg-6 col-12 card" v-for="anuncio in anuncios">
+                    <div class="col-lg-6 col-12 card" v-for="anuncio,indice in anuncios" v-if="indice < 2">
                         <div class="anuncios">
                             <div class="card-body">
                               <div style="display: flex;justify-content: end;">
                                 <!--MODAL MODIFICAR-->
                                 <!-- Button trigger modal -->
-                                 <button type="button" id="eliminar" data-bs-toggle="modal" data-bs-target="#eliminarAnuncio" @click="id = anuncio.id"><img class="delete" src="media/delete.svg" alt="eliminar">
+                                 <button type="button" id="eliminar" data-bs-toggle="modal" data-bs-target="#eliminarAnuncio" @click="id = anuncio.id">
+                                   <img class="delete" src="media/delete.svg" alt="eliminar">
                                  </button>
                               </div>
                                <h3 >{{anuncio.titulo}}</h3>
@@ -275,7 +277,8 @@ if (!usuarioAdministrador::estaLogeado()) {
                                 <!-- Button trigger modal -->
                                  <button type="button buttonAgregar" id="agregar" @click="abrirModalEditar(anuncio)">MODIFICAR
                                  </button>
-                                 </div></h4>
+                                 </div>
+                                </h4>
                                <p class="card-text">{{anuncio.descripcion}}</p>
                             </div>
                         </div>
@@ -333,9 +336,35 @@ if (!usuarioAdministrador::estaLogeado()) {
                   </div>
                 </div>
             <button  type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ver más </button></div>
-            <div class="collapse" id="collapseExample">
-              <div class="card card-body ">
+              <div class="collapse" id="collapseExample">
+                <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5-an">
+                  <div class="col-lg-6 col-12 card" v-for="anuncio,indice in anuncios" v-if="indice >= 2">
+                      <div class="anuncios">
+                          <div class="card-body">
+                            <div style="display: flex;justify-content: end;">
+                              <!--MODAL MODIFICAR-->
+                              <!-- Button trigger modal -->
+                                <button type="button" id="eliminar" data-bs-toggle="modal" data-bs-target="#eliminarAnuncio" @click="id = anuncio.id">
+                                  <img class="delete" src="media/delete.svg" alt="eliminar">
+                                </button>
+                            </div>
+                              <h3 >{{anuncio.titulo}}</h3>
+                              <h4> <span class="badge bg-light text-dark">NUEVO</span> {{anuncio.fecha}}
+                              <!--MODAL MODIFICAR-->
+                              <!-- Button trigger modal -->
+                                <button type="button buttonAgregar" id="agregar" @click="abrirModalEditar(anuncio)">MODIFICAR
+                                </button>
+                                </div>
+                              </h4>
+                              <p class="card-text">{{anuncio.descripcion}}</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              <div class="card card-body" v-if="anuncios.length <= 2">
                 <p class="flex-center">No hay más anuncios</p>
+              </div>
               </div>
             </div>
             </div>
@@ -960,6 +989,8 @@ if (!usuarioAdministrador::estaLogeado()) {
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.6.1/vue-resource.min.js" integrity="sha512-NuUIe6TWdEivPTcxnihx2e6r2xQFEFPrJfpdZWoBwZF6G51Rphcf5r/1ZU/ytj4lyHwLd/YGMix4a5LqAN15XA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/@yaireo/tagify"></script>
+        <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
         <script src="<?= general::constante('url') ?>/js/herramientas.js"></script>
         <script src="<?= general::constante('url') ?>/js/indexAdministrador/enlaces.js"></script>
         <script src="<?= general::constante('url') ?>/js/indexAdministrador/anuncios.js"></script>
