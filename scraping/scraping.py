@@ -16,10 +16,6 @@ class bot:
         if error := self.iniciar_sesion():
             self.error(error)
         self.logs('inicio de sesion exitoso')
-        time.sleep(123)
-        time.sleep(123)
-        time.sleep(123)
-        time.sleep(123)
         if error := self.redireccionar(self.json['url']['tracker_axie_management']):
             self.error(error)
     
@@ -35,11 +31,6 @@ class bot:
             print(self.json['credencial']['usuario'])
             self.driver.find_element_by_xpath(self.json['xpath']['usuario']).send_keys(self.json['credencial']['usuario'])
             self.driver.find_element_by_xpath(self.json['xpath']['usuario_correcto']).click()
-            time.sleep(123)
-            time.sleep(123)
-            time.sleep(123)
-            time.sleep(123)
-            time.sleep(123)
             return False
         except Exception as error:
             return f'enlace vacio o incorrecto (({error}))'

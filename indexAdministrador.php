@@ -30,6 +30,8 @@ if (!usuarioAdministrador::estaLogeado()) {
   <link href="css/estilos.css" rel="stylesheet" />
   <input type="hidden" value="<?= general::constante('url') ?>/core/indexAdministrador/api/enlace" id="apiEnlace">
   <input type="hidden" value="<?= general::constante('url') ?>/core/indexAdministrador/api/anuncios" id="apiAnuncios">
+  <input type="hidden" value="<?= general::constante('url') ?>/core/indexAdministrador/api/jugadores" id="apiJugadores">
+  <input type="hidden" value="<?= general::constante('url') ?>/core/indexAdministrador/api/grupos" id="apiGrupos">
 </head>
 
 <body id="page-top">
@@ -472,7 +474,7 @@ if (!usuarioAdministrador::estaLogeado()) {
         <!-- Fin Información de becas-->
         <!-- Ranking-->
         <section class="page-section" id="tablaGeneralSeccion">
-        <div class="container px-4 px-lg-5 ">
+        <div class="container px-4 px-lg-5 " id="jugadoresId">
             <h1 class="text-start mt-0">Ranking</h1>
             <p>Las tablas se actualizarán de manera mensual, específicamente cada 1ro de mes.</p>
           <div class="row gx-4 gx-lg-5 tablaMobile"> 
@@ -489,77 +491,13 @@ if (!usuarioAdministrador::estaLogeado()) {
             </tr>
           </thead>
           <tbody>
-            <tr >
-              <th scope="row">1</th>
-              <td>Enzo Caracoch</td>
-              <td>200</td>
-              <td>6</td>
-              <td>900</td>
+            <tr v-for="jugador,indice in jugadores">
+              <th scope="row">{{indice + 1}}</th>
+              <td>{{jugador.nombre}}</td>
+              <td>{{jugador.promedio_spl}}</td>
+              <td>{{jugador.cantidad_spl_victoria}}</td>
+              <td>{{jugador.cantidad_copas}}</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Federico Alvarez</td>
-              <td>180</td>
-              <td>5</td>
-              <td>850</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Franco Perez</td>
-              <td>170</td>
-              <td>4</td>
-              <td>760</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Karou Rangan</td>
-              <td>160</td>
-              <td>4</td>
-              <td>700</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Mapache Suarez</td>
-              <td>160</td>
-              <td>140</td>
-              <td>4</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Meinah Martinez</td>
-              <td>140</td>
-              <td>4</td>
-              <td>670</td>
-            </tr>
-            <tr>
-              <th scope="row">7</th>
-              <td>Franco Logras</td>
-              <td>130</td>
-              <td>2</td>
-              <td>450</td>
-            </tr>
-            <tr>
-              <th scope="row">8</th>
-              <td>Micaela Rodriguez</td>
-              <td>126</td>
-              <td>2</td>
-              <td>4500</td>
-            </tr>
-            <tr>
-              <th scope="row">9</th>
-              <td>Federico Puels</td>
-              <td>120</td>
-              <td>2</td>
-              <td>400</td>
-            </tr>
-            <tr>
-              <th scope="row">10</th>
-              <td>Ignacio Pratto</td>
-              <td>100</td>
-              <td>2</td>
-              <td>200</td>
-            </tr>
-
           </tbody>
         </table>
         </div>
@@ -568,7 +506,7 @@ if (!usuarioAdministrador::estaLogeado()) {
         </section>
         <!-- GRUPOS DE BECADOS-->
         <section class="page-section" id="gruposSeccion">
-            <div class="container px-4 px-lg-5 ">
+            <div class="container px-4 px-lg-5" id="gruposBecadosId">
             <h1 class="text-start mt-0">Grupos de becados </h1>
             <!--MODAL AGREGAR-->
               <!-- Button trigger modal -->
@@ -587,77 +525,25 @@ if (!usuarioAdministrador::estaLogeado()) {
                        <form>                      
                         <div class="input-group mb-3">
                           <span class="input-group-text" id="inputGroup-sizing-default">Título del nuevo grupo</span>
-                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="100" placeholder="Introduce como máximo 50 caracteres" required>
+                          <input type="text" id="tituloGrupo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="100" placeholder="Introduce como máximo 50 caracteres" required>
                         </div>
-                        <div class="container px-4 px-lg-5 ">
-                          <div class="row gx-4 gx-lg-5 " style=" height: 8em; overflow: auto; width:100%;" >
-                            <div class="col-lg-6" >
-                              <ul>
-                              <li class="form-check" >
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                           </ul>
-                            </div>                        
-                          </div>                          
-                        </div>                      
+                        <div class="form-group">
+                          <label>Buscador</label>
+                          <input type="text" class="form-control" id="agregarJugador">
+                        </div>               
                       </form>
                      </div>
                      <div class="modal-footer">
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                       <input type="submit" value="Crear" class="btn btn-primary" id="enviar" class="boton">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="enviar" class="boton" @click="crear($event)">Aceptar</button>
                      </div>
                    </div>
                  </div>
                </div>
             <p>Los grupos de becados permiten formar alianzas entre quienes reciben nuestra beca.</p>
             <div class="row gx-4 gx-lg-5 ">  
-        <div class="col-12 col-lg-6" >
-           <h2 class="d-flex justify-content-center">GRUPO #1</h2>
+        <div class="col-12 col-lg-6" v-for="grupo in grupos">
+           <h2 class="d-flex justify-content-center">{{grupo.titulo}}</h2>
            <div style="display: flex;justify-content: end;">
                                 <!--MODAL MODIFICAR-->
                                 <!-- Button trigger modal -->
@@ -691,30 +577,10 @@ if (!usuarioAdministrador::estaLogeado()) {
                </tr>
              </thead>
              <tbody>
-               <tr class="table-success">
-                 <th scope="row">1</th>
-                 <td>Enzo Caracoch</td>
-                 <td>900</td>
-               </tr>
-               <tr>
-                 <th scope="row">2</th>
-                 <td>Federico Alvarez</td>
-                 <td>850</td>
-               </tr>
-               <tr>
-                 <th scope="row">3</th>
-                 <td>Franco Perez</td>
-                 <td>760</td>
-               </tr>
-               <tr>
-                 <th scope="row">4</th>
-                 <td>Karou Rangan</td>
-                 <td>700</td>
-               </tr>
-               <tr>
-                 <th scope="row">5</th>
-                 <td>Mapache Suarez</td>
-                 <td>4</td>
+               <tr v-for="jugador,indice in grupo.jugadores" :class="indice == 0 ? 'table-success' : ''">
+                 <th scope="row">{{indice + 1}}</th>
+                 <td>{{jugador.nombre}}</td>
+                 <td>{{jugador.cantidad_copas}}</td>
                </tr>
              </tbody>
            </table>
@@ -742,196 +608,6 @@ if (!usuarioAdministrador::estaLogeado()) {
                             <div class="col-lg-6" >
                               <ul>
                               <li class="form-check" >
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                           </ul>
-                            </div>                        
-                          </div>                          
-                        </div>
-                      </form>
-                     </div>
-                     <div class="modal-footer">
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                       <input type="submit" value="Actualizar" class="btn btn-primary" id="enviar" class="boton">
-                     </div>
-                   </div>
-                 </div>
-               </div>
-           </div>
-        </div>
-        <div class="col-12 col-lg-6" >
-           <h2 class="d-flex justify-content-center">GRUPO #2</h2>
-           <div style="display: flex;justify-content: end;">
-                                <!--MODAL MODIFICAR-->
-                                <!-- Button trigger modal -->
-                                 <button type="button" id="eliminar" data-bs-toggle="modal" data-bs-target="#eliminarGrupo"><img class="delete" src="media/delete.svg" alt="eliminar">
-                                 </button>
-                                 <!-- Modal -->
-                                 <div class="modal fade" id="eliminarGrupo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                   <div class="modal-dialog">
-                                     <div class="modal-content">
-                                       <div class="modal-header">       
-                                        <h2 class="modal-title" id="staticBackdropLabel">Eliminar grupo</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                       </div>
-                                       <div class="modal-body">
-                                         <h4>¿Desea eliminar permanentemente este grupo?</h4>
-                                       </div>
-                                       <div class="modal-footer">
-                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                         <input type="submit" value="Aceptar" class="btn btn-primary" id="enviar" class="boton">
-                                       </div>
-                                     </div>
-                                   </div>
-                                 </div>
-                              </div>
-           <table class="table">
-             <thead >
-               <tr class="table-dark-green">
-                 <th scope="col" style="border-top-left-radius: 1em; justify-content: center;">#</th>
-                 <th scope="col">Nombre</th>
-                 <th scope="col" style="border-top-right-radius: 1em;"><div style="width: 2em; margin-right: 0;"><img src="media/copa.svg" alt="copa SLP"></div></th>
-               </tr>
-             </thead>
-             <tbody>
-               <tr class="table-success">
-                 <th scope="row">1</th>
-                 <td>Enzo Caracoch</td>
-                 <td>900</td>
-               </tr>
-               <tr>
-                 <th scope="row">2</th>
-                 <td>Federico Alvarez</td>
-                 <td>850</td>
-               </tr>
-               <tr>
-                 <th scope="row">3</th>
-                 <td>Franco Perez</td>
-                 <td>760</td>
-               </tr>
-               <tr>
-                 <th scope="row">4</th>
-                 <td>Karou Rangan</td>
-                 <td>700</td>
-               </tr>
-               <tr>
-                 <th scope="row">5</th>
-                 <td>Mapache Suarez</td>
-                 <td>4</td>
-               </tr>
-             </tbody>
-           </table>
-           <div style="display: flex;justify-content: center;">
-             <!--MODAL MODIFICAR-->
-              <!-- Button trigger modal -->
-               <button type="button buttonAgregar" id="agregar" data-bs-toggle="modal" data-bs-target="#modificargrupo">MODIFICAR
-               </button>
-              <!-- Modal -->
-               <div class="modal fade" id="modificargrupo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                   <div class="modal-content">
-                     <div class="modal-header">       
-                      <h5 class="modal-title" id="staticBackdropLabel">Modificar grupo</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                     </div>
-                     <div class="modal-body">
-                       <form>                      
-                        <div class="input-group mb-3">
-                          <span class="input-group-text" id="inputGroup-sizing-default">Título del grupo</span>
-                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="100"  required>
-                        </div>
-                        <div class="container px-4 px-lg-5 ">
-                          <div class="row gx-4 gx-lg-5 " style=" height: 8em; overflow: auto; width:100%;" >
-                            <div class="col-lg-6" >
-                              <ul>
-                              <li class="form-check" >
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
-                               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                               <label class="form-check-label" for="flexCheckDefault">
-                                Usuario 
-                               </label>
-                             </li>
-                             <li class="form-check">
                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                <label class="form-check-label" for="flexCheckDefault">
                                 Usuario 
@@ -963,8 +639,6 @@ if (!usuarioAdministrador::estaLogeado()) {
             </div>
         </section>
 
-
-
         <!-- Footer-->
         <footer class="cpy-5">
 
@@ -994,5 +668,9 @@ if (!usuarioAdministrador::estaLogeado()) {
         <script src="<?= general::constante('url') ?>/js/herramientas.js"></script>
         <script src="<?= general::constante('url') ?>/js/indexAdministrador/enlaces.js"></script>
         <script src="<?= general::constante('url') ?>/js/indexAdministrador/anuncios.js"></script>
+        <script src="<?= general::constante('url') ?>/js/indexAdministrador/jugadores.js"></script>
+        <script src="<?= general::constante('url') ?>/js/indexAdministrador/gruposBecados.js"></script>
+        <script>
+        </script>
     </body>
 </html>
