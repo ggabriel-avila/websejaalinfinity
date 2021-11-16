@@ -33,15 +33,29 @@ class grupos extends baseDeDatos
 
     public function crearRelacion($id)
     {
+        $this->conectar();
         $jugadores = explode(',', $this->jugadores);
         foreach ($jugadores as $jugador) {
             $nombre = $this->conexion->real_escape_string(explode(' - ', $jugador)[0]);
-            $promedio_spl = $this->conexion->real_escape_string(explode(' - ', $jugador)[1]);
-            $sql = "UPDATE jugadores SET grupo_becado_id = $id WHERE nombre = '$nombre' AND promedio_spl = '$promedio_spl'";
+            $idJugador = $this->conexion->real_escape_string(explode(' - ', $jugador)[1]);
+            $sql = "UPDATE jugadores SET grupo_becado_id = $id WHERE id = $idJugador";
             if (!$datosBD = $this->conexion->query($sql)) {
                 apiRespuesta::incorrecto(500, 'No se pudo crear los grupos ' . $this->conexion->error);
             }
         }
+        $this->desconectar();
+    }
+
+    public function modificarTitulo($id)
+    {
+        $this->conectar();
+        $this->titulo = $this->conexion->real_escape_string($this->titulo);
+        $sql = "UPDATE grupo_becados SET titulo = '$this->titulo' WHERE id = $id";
+        if (!$datosBD = $this->conexion->query($sql)) {
+            apiRespuesta::incorrecto(500, 'no se pudo guardar los datos');
+        }
+        return mysqli_insert_id($this->conexion);
+        $this->desconectar();
     }
 
     public function crearGrupo()
@@ -81,6 +95,38 @@ class grupos extends baseDeDatos
         apiRespuesta::correcto(200, $respuesta);
         $this->desconectar();
     }
+
+    /**
+     *  @param integer $id
+     *  @return void
+     */
+    public function eliminar(int $id = 0): void
+    {
+        $this->conectar();
+        $id = $this->conexion->real_escape_string($id);
+        $sql = "DELETE FROM grupo_becados WHERE id = $id LIMIT 1";
+        if (!$this->conexion->query($sql)) {
+            apiRespuesta::incorrecto(500, 'No se pudo obtener los grupos');
+        }
+        apiRespuesta::correcto();
+        $this->desconectar();
+    }
+
+    /**
+     *  @param integer $id
+     *  @return void
+     */
+    public function modificar(int $id = 0): void
+    {
+        $this->conectar();
+        $id = $this->conexion->real_escape_string($id);
+        $sql = "DELETE FROM grupo_becados WHERE id = $id LIMIT 1";
+        if (!$this->conexion->query($sql)) {
+            apiRespuesta::incorrecto(500, 'No se pudo obtener los grupos');
+        }
+        apiRespuesta::correcto();
+        $this->desconectar();
+    }
 }
 
 if (!usuarioAdministrador::esAdministrador()) {
@@ -92,8 +138,19 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $usuario->obtener();
         break;
     case 'POST':
-        $usuario = new grupos($_POST['titulo'], $_POST['jugadores']);
-        $usuario->crear();
+        if ($_POST['method'] == 'eliminar') {
+            $usuario = new grupos();
+            $usuario->eliminar($_POST['id']);
+        }
+        if ($_POST['method'] == 'crear') {
+            $usuario = new grupos($_POST['titulo'], $_POST['jugadores']);
+            $usuario->crear();
+        }
+        if ($_POST['method'] == 'modificar') {
+            $usuario = new grupos($_POST['titulo'], $_POST['jugadores']);
+            $usuario->crearRelacion($_POST['id']);
+            $usuario->modificarTitulo($_POST['id']);
+        }
         break;
     default:
         apiRespuesta::incorrecto(400, 'accion incorrecta');
