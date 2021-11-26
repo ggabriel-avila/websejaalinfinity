@@ -1,0 +1,18 @@
+{
+    "credencial": {
+        "usuario": "mauroasoriano22@gmail.com",
+        "clave": "ZAPATILLASpuma12345"
+    },
+    "archivo": {
+        "chromedriver": "C:\\chromedriver.exe",
+        "logs": "./logs.txt"
+    },
+    "url": {
+        "iniciar_sesion_google": "https://accounts.google.com/signin/v2/identifier",
+        "tracker_axie_management": "https://tracker.axie.management/"
+    },
+    "xpath": {
+        "usuario": "//*[@id='identifierId']",
+        "usuario_correcto": "//*[@id='identifierNext']/div/button"
+    }
+}
