@@ -12,7 +12,7 @@ class jugadores extends baseDeDatos
     public function obtener(): void
     {
         $this->conectar();
-        $sql = "SELECT * FROM jugadores";
+        $sql = "SELECT * FROM jugadores ORDER BY cantidad_copas DESC";
         if (!$datosBD = $this->conexion->query($sql)) {
             apiRespuesta::incorrecto(500, 'No se pudo obtener los enlaces');
         }

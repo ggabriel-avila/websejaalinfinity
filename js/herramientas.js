@@ -10,21 +10,41 @@ var herramientaVue = new Vue({
          * @param {string} mensaje 
          */
         alertas: function (alerta = null, mensaje = null) {
-            //TODO
-            //cambiar el sistema de alertas
+            let html = '';
             switch (alerta) {
-                case 'correcto':
-                    alert(mensaje)
+                case 'correcto': ;
+                    html = `
+                    <div id="alerta" style="position:fixed;top:0%;right:3%;z-index:2147483647">
+                        <div class="alert alert-success" role="alert">
+                            ${mensaje}
+                        </div>
+                    </div>`
+                    $('body').append(html);
                     break;
                 case 'informacion':
-                    alert(mensaje)
+                    html = `
+                    <div id="alerta" style="position:fixed;top:0%;right:3%;z-index:2147483647">
+                        <div class="alert alert-warning" role="alert">
+                            ${mensaje}
+                        </div>
+                    </div>`
+                    $('body').append(html);
                     break;
                 case 'incorrecto':
-                    alert(mensaje)
+                    html = `
+                    <div id="alerta" style="position:fixed;top:0%;right:3%;z-index:2147483647">
+                        <div class="alert alert-error" role="alert">
+                            ${mensaje}
+                        </div>
+                    </div>`
+                    $('body').append(html);
                     break;
                 default:
                     alert(mensaje)
             }
+            window.setTimeout(function () {
+                $('#alerta').remove();
+            }, 5000);
         }
     }
 })

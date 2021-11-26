@@ -12,13 +12,13 @@ class baseDeDatos extends general
     protected string $user;
     protected string $password;
 
-    protected $conexion;
+    public $conexion;
 
     /**
      * inicia la conexion a la base de datos
      * @return bool
      */
-    protected function conectar(): bool
+    public function conectar(): bool
     {
         $configuraciones = general::configuraciones();
         $this->host      = $configuraciones['credencial']['baseDeDatos']['host'];
@@ -41,7 +41,7 @@ class baseDeDatos extends general
      * desconecta la base de datos
      * @return bool
      */
-    protected function desconectar(): bool
+    public function desconectar(): bool
     {
         $this->conexion->close();
         return true;

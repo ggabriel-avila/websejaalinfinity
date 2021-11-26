@@ -84,7 +84,7 @@ var gruposBecadosVue = new Vue({
             console.log(id);
             this.$http.post(url, formData).then((respuesta) => {
                 this.obtener();
-                herramientaVue.alertas('correcto', 'grupo creado exitosamente');
+                herramientaVue.alertas('correcto', 'grupo eliminado exitosamente');
             }, respuesta => {
                 console.log(respuesta);
             })

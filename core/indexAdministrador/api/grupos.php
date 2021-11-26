@@ -25,10 +25,8 @@ class grupos extends baseDeDatos
      */
     public function crear(): void
     {
-        $this->conectar();
         $idGrupo = $this->crearGrupo();
         $this->crearRelacion($idGrupo);
-        $this->desconectar();
     }
 
     public function crearRelacion($id)
@@ -36,9 +34,9 @@ class grupos extends baseDeDatos
         $this->conectar();
         $jugadores = explode(',', $this->jugadores);
         foreach ($jugadores as $jugador) {
-            $nombre = $this->conexion->real_escape_string(explode(' - ', $jugador)[0]);
-            $idJugador = $this->conexion->real_escape_string(explode(' - ', $jugador)[1]);
+            $idJugador = explode(' - ', $jugador)[1];
             $sql = "UPDATE jugadores SET grupo_becado_id = $id WHERE id = $idJugador";
+            echo $sql;
             if (!$datosBD = $this->conexion->query($sql)) {
                 apiRespuesta::incorrecto(500, 'No se pudo crear los grupos ' . $this->conexion->error);
             }
@@ -60,11 +58,13 @@ class grupos extends baseDeDatos
 
     public function crearGrupo()
     {
+        $this->conectar();
         $sql = "INSERT INTO grupo_becados(titulo) VALUES ('$this->titulo')";
         if (!$datosBD = $this->conexion->query($sql)) {
             apiRespuesta::incorrecto(500, 'no se pudo guardar los datos');
         }
         return mysqli_insert_id($this->conexion);
+        $this->desconectar();
     }
 
     /**
@@ -80,7 +80,7 @@ class grupos extends baseDeDatos
         $gruposBD = $gruposBD->fetch_all(MYSQLI_ASSOC);
         foreach ($gruposBD as $grupo) {
             $jugadores = [];
-            $sql = "SELECT * FROM jugadores WHERE grupo_becado_id = $grupo[id]";
+            $sql = "SELECT * FROM jugadores WHERE grupo_becado_id = $grupo[id] ORDER BY cantidad_copas DESC";
             $jugadoresBD = $this->conexion->query($sql);
             $jugadoresBD = $jugadoresBD->fetch_all(MYSQLI_ASSOC);
             foreach ($jugadoresBD as $jugador) {
@@ -89,6 +89,7 @@ class grupos extends baseDeDatos
             $respuesta[] = [
                 'id' => $grupo['id'],
                 'titulo' => $grupo['titulo'],
+                'cantidad_copas' => $grupo['titulo'],
                 'jugadores' => $jugadores
             ];
         }
