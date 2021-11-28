@@ -86,7 +86,7 @@ use configuracion\general;
                         <tbody>
                             <?php
                             $conexion = new baseDeDatos();
-                            $sql = "SELECT * FROM jugadores ORDER BY cantidad_spl_victoria DESC";
+                            $sql = "SELECT * FROM jugadores ORDER BY cantidad_copas DESC";
                             $conexion->conectar();
                             $datos = $conexion->conexion->query($sql);
                             $datos = $datos->fetch_all(MYSQLI_ASSOC);
@@ -119,7 +119,7 @@ use configuracion\general;
 
                 <?php
                 $conexion = new baseDeDatos();
-                $sql = "SELECT * FROM jugadores ORDER BY cantidad_spl_victoria DESC";
+                $sql = "SELECT * FROM jugadores ORDER BY cantidad_copas DESC";
                 $conexion->conectar();
 
                 $sql = "SELECT * FROM grupo_becados";
