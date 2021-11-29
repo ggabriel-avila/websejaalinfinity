@@ -58,11 +58,13 @@ button a {
 }
 #QuienesSomosSeccion{
 	background-color: black;
-	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/quienessomosa.png);
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/quienessomos.png);
+	background-size: 100%;
 }
 #AnunciosSeccion{
 	background-color: black;
 	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/anuncios.png);
+	background-size: 100%;
 }
 .anuncios{
 	background-color: #30D7BD;
@@ -83,6 +85,7 @@ button a {
 #infoBecasSeccion{
 	background-color: black;
 	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/becas.png);
+	background-size: 100%;
 }
 #infoBecasSeccion h2 {
 	padding-top: 2.5em; 
@@ -212,6 +215,13 @@ footer h3{
 }
 #tablaGeneralSeccion{
 	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/ranking.png);
+	background-size: 100%;
+}
+#gruposSeccion{
+	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/ranking.png);
+	background-size: 100%;
 }
 @media (min-width: 1850px){
 .modoadmin{
@@ -319,6 +329,60 @@ textarea {
 	font-size:1em;
 }
 
+
+@media (max-width: 749px){
+	#QuienesSomosSeccion{
+	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/quienessomosmobile.png);
+	background-size: 100%;}
+
+	#AnunciosSeccion{
+	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/anunciosmobile.png);
+	background-size: 100%;}
+	#infoBecasSeccion{
+	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/becasmobile.png);
+	background-size: 100%;}
+	#tablaGeneralSeccion{
+	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/rankingmobile.png);
+	background-size: 100%;
+}
+#gruposSeccion{
+	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/rankingmobile.png);
+	background-size: 100%;
+}
+
+}
+
+
+.modal-body h4{
+	color: #232323;
+}
+
+label .form-label{
+	color: #232323;
+}
+.labelLogin{
+	color: white;
+	margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+#tablaGeneralSeccion{
+	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/ranking.png);
+	background-size: 100%;
+}
+#gruposSeccion{
+	background-color: black;
+	background: linear-gradient(to bottom, rgb(0 0 0 / 33%) 0%, rgb(0 0 0 / 61%) 0%), url(../media/ranking.png);
+	background-size: 100%;
+}
+
+
 @media (max-width: 991px){
 	.navbar-collapse {
   background-color: white;
@@ -330,7 +394,7 @@ textarea {
 .navbar > .container-lg,
 .navbar > .container-xl,
 .navbar > .container-xxl {
-  background-color: #CE5BEA;
+  background-color: black;
 }
 .sejaalError {
 	width: 20em;

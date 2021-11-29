@@ -30,7 +30,7 @@ if(usuarioAdministrador::estaLogeado()){
 
 <body id="page-top">
   <header>
-    <div class="d-flex justify-content-end" style="background-color:white;">
+    <div class="d-flex justify-content-end" style="background-color:black;">
       <div class="RedesHeader d-none d-lg-block">
         <a title="Discord" href="https://discord.com/invite/EYDAWQErKW"><img src="media/discord.svg" alt="discord logo"></a>
         <a title="Instagram" href="https://www.instagram.com/sejaalinfinity/"><img src="media/instagram.svg" alt="Instagram logo"></a>
@@ -79,12 +79,12 @@ if(usuarioAdministrador::estaLogeado()){
         <div class="row gx-4 gx-lg-5">
           <div class="mb-3">
             <img src="media/usuario.svg" alt="usuario ux" style="width: 1em;">
-            <label for="exampleInputEmail1" class="form-label">Usuario</label>
+            <label for="exampleInputEmail1" class="labelLogin">Usuario</label>
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="usuario" v-model="usuario">
           </div>
           <div class="mb-3">
             <img src="media/contra.svg" alt="contrasenia ux" style="width: 1em;">
-            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <label for="exampleInputPassword1" class="labelLogin">Contraseña</label>
             <input type="password" class="form-control" id="exampleInputPassword1"  v-model="clave">
           </div>
           <button type="button" class="btn btn-primary" @click="iniciarSesion">Ingresar</button>

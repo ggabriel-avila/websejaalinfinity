@@ -26,34 +26,12 @@ class scraping extends baseDeDatos
         } catch (\Throwable $th) {
             apiRespuesta::incorrecto(403, 'Acceso denegado');
         }
-        $this->eliminarDatos();
         $this->actualizarDatos();
         $this->verificarExisten();
         $this->insertarNuevosDatos();
     }
 
-    public function eliminarDatos()
-    {
-        $this->conectar();
-        $query = "SELECT nombre FROM jugadores";
-        $datosDB = $this->conexion->query($query);
-        $datosDB = $datosDB->fetch_all(MYSQLI_ASSOC);
-        foreach($datosDB as $datoDB){
-            $encontrado = false;
-            foreach($this->datos as $dato){
-                if($dato['nombre'] == $datoDB['nombre']){
-                    $encontrado = true;
-                    continue;
-                }
-            }
-            if($encontrado == false){
-                $query = "DELETE FROM jugadores WHERE nombre = '$datoDB[nombre]'";
-                $this->conexion->query($query);
-            }
-        }
-        $this->desconectar();
-    }
-
+    
     public function actualizarDatos()
     {
         $this->conectar();
@@ -116,6 +94,7 @@ class scraping extends baseDeDatos
             }
             $this->desconectar();
         }
+        // $query = "UPDATE jugadores SET nombre = '$nombre', promedio_spl = '$promedioSpl', cantidad_copas = '$cantidadCopas', cantidad_spl_victoria = '$cantidadSplVictoria' LIMIT 1";
     }
 }
 

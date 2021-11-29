@@ -323,11 +323,15 @@ tfoot,
 tr,
 td,
 th {
-  border-color: #dee2e6;
+  border-color: #aeafb0;
   border-style: solid;
   border-width: 1px;
   border-top-width: 0;
-  justify-content: center;}
+  justify-content: center;
+background-color: white;
+border-left-color:#00000073;
+border-right-color:#00000073;}
+
 
 
 
@@ -4131,7 +4135,7 @@ textarea.form-control-lg {
   padding: 0.25rem 0.75rem;
   font-size: 1.25rem;
   line-height: 1;
-  background-color: transparent;
+  background-color: #fff;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   transition: box-shadow 0.15s ease-in-out;
@@ -4510,6 +4514,7 @@ textarea.form-control-lg {
 .navbar-light .navbar-toggler {
   color: rgba(0, 0, 0, 0.55);
   border-color: rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 .navbar-light .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -4564,7 +4569,7 @@ textarea.form-control-lg {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: transparent;
   background-clip: border-box;
   border-radius: 0.25rem;
 }
@@ -11382,7 +11387,7 @@ hr.divider-light {
 
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  background-color: #fff;
+  background-color: black;
   transition: background-color 0.2s ease;
 }
 #mainNav .navbar-brand {
@@ -11399,6 +11404,16 @@ hr.divider-light {
   line-height: 1em;
 
 }
+
+#mainNav .navbar-nav .nav-item{
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+}
+
+
+
 #mainNav .navbar-nav .nav-item .nav-link:hover, #mainNav .navbar-nav .nav-item .nav-link:active {
   color: #30D7BD;
 }
@@ -11408,7 +11423,7 @@ hr.divider-light {
 @media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
-    background-color: white;
+    background-color: black;
   }
   #mainNav .navbar-brand {
     color: rgba(255, 255, 255, 0.7);
@@ -11428,7 +11443,7 @@ hr.divider-light {
   }
   #mainNav.navbar-shrink {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    background-color: #fff;
+    background-color: black;
   }
   #mainNav.navbar-shrink .navbar-brand {
     color: #212529;

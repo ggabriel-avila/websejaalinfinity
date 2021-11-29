@@ -36,7 +36,7 @@ if (!usuarioAdministrador::estaLogeado()) {
 
 <body id="page-top">
 	<header>
-		<div class="" style="background-color:white;">
+		<div class="" style="background-color:black;">
 			<div class="modoadmin justify-content-start">
 				<div class="signal d-none d-lg-block">
 					<h1>ESTAS EN MODO ADMINISTRADOR</h1>
@@ -197,9 +197,11 @@ if (!usuarioAdministrador::estaLogeado()) {
 			<div class="row gx-4 gx-lg-5"> <img class="col-lg-6 col-12" src="media/logo-extendido.svg" alt="Logo Sejaal Infinity">
 				<div class="col-lg-6 col-12">
 					<p>Somos un grupo de personas que decidimos invertir en un proyecto basado en los juegos NFT en este caso Axie Infinity con el objetivo de poder ayudar a personas dándoles las herramientas para adentrarse en este mundo y que estas a su vez nos ayuden a nosotros generando ingresos para hacer que el proyecto Seejal Infinity pueda llegar a más personas y crecer cada día más.</p>
-					<button> <a href="https://docs.google.com/forms/d/e/1FAIpQLSfm9WbmjPkamHD976TAUQh9BTUwpIKywv_b8ocufR78GfaLnA/viewform" target="_blank">Completá el formulario</a> </button>
 				</div>
 			</div>
+			<div class="flex-center">
+                  <button > <a href="https://docs.google.com/forms/d/e/1FAIpQLSfm9WbmjPkamHD976TAUQh9BTUwpIKywv_b8ocufR78GfaLnA/viewform" target="_blank">Completá el formulario</a> </button>
+        </div>
 		</div>
 	</section>
 	<!-- ANUNCIOS-->
@@ -345,7 +347,7 @@ if (!usuarioAdministrador::estaLogeado()) {
 				<div class="row gx-4 gx-lg-5">
 					<h2>-SLP mínimos y porcentaje</h2>
 					<div class="col-lg-6 col-12">
-						<p><b>Primer mes:</b>El becado tendrá que hacer un mínimo de 3630 SLP, este número es menor que el de los otros meses ya que los primeros días el becado deberá gastar sus energías para subir de nivel sus axies lo que no le permitirá ganar SLP jugando arena. Este número se obtiene al sumar 75 SLP diarios la primer semana + 135 SLP diarios los otros días restantes del mes. Es decir, el becado podrá jugar la primer semana las 20 energías diarias en modo PVE y a partir de ahí deberá gastar sus energias jugando PVP para poder llegar a los 135 SLP diarios (en promedio). <b>De estos 3630 SLP, el 30% serán para el becado y el 70% para Sejaal Infinity, todos los SLP excedentes a este número, le corresponderán 60% al becado y 40% a Sejaal Infinity </b> </p>
+						<p><b>Primer mes:</b> El becado tendrá que hacer un mínimo de 3630 SLP, este número es menor que el de los otros meses, ya que los primeros días el becado deberá gastar sus energías para subir de nivel sus axies lo que no le permitirá ganar SLP jugando arena.  Este número se obtiene al sumar 75 SLP diarios la primera semana + 135 SLP diarios los otros días restantes del mes. Es decir, el becado podrá jugar la primera semana las 20 energías diarias en modo PvE y a partir de ahí deberá gastar sus energías jugando PvP para poder llegar a los 135 SLP diarios (en promedio).  <b>De estos 3630 SLP, el 30% serán para el becado y el 70% para Sejaal Infinity, todos los SLP excedentes a este número, le corresponderán 60% al becado y 40% a Sejaal Infinity. </b> </p>
 					</div>
 					<div class="col-lg-6 col-12">
 						<p><b>Segundo mes en adelante: </b> El becado tendrá que hacer un mínimo de 4050 SLP, este número se obtiene al hacer un promedio de 135 SLP diarios. <b>De estos 4050 SLP el 40% serán para el becado y el 60% para Sejaal Infinity, todos los SLP excedentes a este número, le corresponderán 60% al becado y 40% a Sejaal Infinity </b> </p>
@@ -354,13 +356,6 @@ if (!usuarioAdministrador::estaLogeado()) {
 				<div class="row row-grafico  gx-4 gx-lg-5 ">
 					<div class="col-lg-6-img col-12"> <img src="media/primermes-grafico.svg" alt=" Primer mes ganancia sejaal infinity"> </div>
 					<div class="col-lg-6-img col-12"> <img src="media/segundomes-grafico.svg" alt=" Segundo mes ganancia sejaal infinity"> </div>
-				</div>
-				<div class="row gx-4 gx-lg-5">
-					<div class="col-lg-12 col-12">
-						<p><b>Nota importante:</b></p>
-						<hr>
-						<p>En caso de que el becado no llegue a hacer los SLP mínimos correspondiente a su mes (ya sea 3630 el primer mes o 4050 a partir del segundo), a su pago se le restará la parte que le corresponde a Sejaal Infinity. Por ejemplo, si el 2do mes un becado no consigue llegar a los 4050 SLP, Sejaal Infinity tomará su parte (2430 SLP) y le dará lo restante al becado. En caso de que el becado no consiga hacer los SLP correspondientes a Sejaal Infinity se le quitará la beca.</p>
-					</div>
 				</div>
 				<!-- VER MAS-->
 				<div class="flex-center">
@@ -371,13 +366,14 @@ if (!usuarioAdministrador::estaLogeado()) {
 						<h2>-Grupos</h2>
 						<div class="col-lg-6 col-12">
 							<ul>
-								<li>Mensualmente cada becado competirá junto con otros 3 becados por conseguir un 10% más de SLP mensuales, es decir si el becado el primer mes sale primero de su grupo se le pagará el 40%, y si está en el 2do mes en adelante se le pagará el 50% de los SLP obtenidos (Sin tener en cuenta el excedente, que será igual de un 60% para el becado)</li>
+								<li>Para incentivar la competitividad y el desarrollo de nuestros becados, contamos con un sistema de grupos dinámicos mensuales.</li>
+								<li>A lo largo de cada mes los becados competirán entre ellos por conseguir un 10% extra de SLP sobre su paga.</li>
 							</ul>
 						</div>
 						<div class="col-lg-6 col-12">
 							<ul>
-								<li>El día 17 de cada mes a las 00:00hs UTC se reiniciará el mes y se obtendrá el ganador de cada grupo, quedará primero el becado que más copas tenga de su grupo.</li>
-								<li>El día 18 de cada mes se anunciarán los nuevos grupos, se podrán ver en nuestra página web.</li>
+								<li>El día 17 de cada mes a las 00:00hs UTC se reiniciará la competencia y se darán a conocer los ganadores, quedará primero el becado que más copas haya alcanzado en su grupo.</li>
+								<li>El día 18 de cada mes se actualizarán y anunciarán los grupos. En la sección *ranking* se pueden visualizar los grupos actuales y la tabla general de copas.</li>
 							</ul>
 						</div>
 					</div>
@@ -385,12 +381,12 @@ if (!usuarioAdministrador::estaLogeado()) {
 						<h2>-Pagos <img src="media/slp.png" alt="SLP transparente" style="width: 2.5em;"></h2>
 						<div class="col-lg-6 col-12">
 							<ul>
-								<li>El pago se realizará en SLP y se le enviará directamente a la cuenta de binance de cada becado.</li>
+								<li>El pago se realiza en SLP, enviándose directamente a la cuenta de Binance o Ronin a preferencia de cada becado.</li>
 							</ul>
 						</div>
 						<div class="col-lg-6 col-12">
 							<ul>
-								<li>El pago se realizará cada mes, el mismo día que el becado ingreso a Sejaal Infinity, es decir, si el becado comenzó si beca el día 3 de marzo, su pago se realizará el día 3 de cada mes (su primer pago será día 3 de abril).</li>
+								<li>Los pagos son de manera mensual y cuando el becado ingrese se le informará específicamente en que día recibirá sus SLP.</li>
 							</ul>
 						</div>
 					</div>
@@ -398,12 +394,12 @@ if (!usuarioAdministrador::estaLogeado()) {
 						<h2>-Renunciar a la beca</h2>
 						<div class="col-lg-6 col-12">
 							<ul>
-								<li>Cada becado puede renunciar a su beca en cualquier momento, pero en caso de no completar el mes y que la renuncia sea en el transcurso de los 30 días, no se efectuará el pago.</li>
+								<li>Cada becado puede renunciar a su beca en cualquier momento, pero en caso de no completar el mes y que la renuncia sea en el transcurso de los 30 días, no se efectuará ningún pago </li>
 							</ul>
 						</div>
 						<div class="col-lg-6 col-12">
 							<ul>
-								<li>Se agradece el aviso anticipado de la salida, así lo tenemos en cuenta para proceder.</li>
+								<li>Se agradece el aviso anticipado de la salida, así es tenido en cuenta para que Sejaal gestione la entrada de un nuevo becado.</li>
 							</ul>
 						</div>
 					</div>
@@ -411,17 +407,18 @@ if (!usuarioAdministrador::estaLogeado()) {
 						<h2>-Ban de cuentas</h2>
 						<div class="col-lg-6 col-12">
 							<ul>
-								<li>En el caso de que un becado cometa errores y se le banee la cuenta, el deberá pagar los axies que se le habían proporcionado.</li>
+								<li>En el caso de que un becado cometa errores y se le banee la cuenta, este deberá pagar los axies que se le habían proporcionado al precio de ese momento en el mercado.</li>
 							</ul>
 						</div>
 						<div class="col-lg-6 col-12">
 							<ul>
 								<li>Los motivos de ban pueden ser:</li>
-								<ul>
-									<li>Las multicuentas en un mismo dispositivo.</li>
-									<li>Tener mas de dos cuentas abiertas en la misma IP de Wi-Fi.</li>
-									<li>Todo programa de terceros no autorizados</li>
-								</ul>
+                                <ul>
+                                  <li>Multicuentas en un mismo dispositivo.</li>
+                                  <li>Tener más de dos cuentas abiertas en la misma IP de Wi-Fi.</li>
+                                  <li>Todo programa de terceros no autorizados (Escritorios remotos, emuladores, etc)</li>
+                                  <li>Cambiar el horario del dispositivo para beneficio propio.</li>
+                                </ul>
 							</ul>
 						</div>
 					</div>
@@ -445,7 +442,8 @@ if (!usuarioAdministrador::estaLogeado()) {
 									<th scope="col">Winrate </th>
 									<th scope="col">SLP por victoria</th>
 									<th scope="col" style="border-top-right-radius: 1em;">
-										<div style="width: 2em; margin-right: 0;"><img src="media/copa.svg" alt="copa SLP"></div>
+										<div class="d-flex justify-content-center">
+											<img style="width: 2em; margin-right: 0;" src="media/copa.svg" alt="copa SLP"></div>
 									</th>
 								</tr>
 							</thead>
@@ -526,7 +524,8 @@ if (!usuarioAdministrador::estaLogeado()) {
 									<th scope="col" style="border-top-left-radius: 1em; justify-content: center;">#</th>
 									<th scope="col">Nombre</th>
 									<th scope="col" style="border-top-right-radius: 1em;">
-										<div style="width: 2em; margin-right: 0;"><img src="media/copa.svg" alt="copa SLP"></div>
+										<div class="d-flex justify-content-center">
+											<img style="width: 2em; margin-right: 0;" src="media/copa.svg" alt="copa SLP"></div>
 									</th>
 								</tr>
 							</thead>

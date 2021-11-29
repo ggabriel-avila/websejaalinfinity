@@ -23,7 +23,7 @@ use configuracion\general;
 
 <body id="page-top">
     <header>
-        <div class="d-flex justify-content-end" style="background-color:white;">
+        <div class="d-flex justify-content-end" style="background-color:black;">
             <div class="RedesHeader d-none d-lg-block">
                 <?php
                     $conexion = new baseDeDatos();
@@ -86,7 +86,7 @@ use configuracion\general;
                         <tbody>
                             <?php
                             $conexion = new baseDeDatos();
-                            $sql = "SELECT * FROM jugadores ORDER BY cantidad_copas DESC";
+                            $sql = "SELECT * FROM jugadores ORDER BY cantidad_spl_victoria DESC";
                             $conexion->conectar();
                             $datos = $conexion->conexion->query($sql);
                             $datos = $datos->fetch_all(MYSQLI_ASSOC);
@@ -119,7 +119,7 @@ use configuracion\general;
 
                 <?php
                 $conexion = new baseDeDatos();
-                $sql = "SELECT * FROM jugadores ORDER BY cantidad_copas DESC";
+                $sql = "SELECT * FROM jugadores ORDER BY cantidad_spl_victoria DESC";
                 $conexion->conectar();
 
                 $sql = "SELECT * FROM grupo_becados";
