@@ -67,7 +67,6 @@ use configuracion\general;
     <section class="page-section" id="tablaGeneralSeccion">
         <div class="container px-4 px-lg-5 ">
             <h1 class="text-start mt-0">Ranking</h1>
-            <p>Las tablas se actualizarán de manera mensual, específicamente cada 1ro de mes.</p>
             <div class="row gx-4 gx-lg-5 tablaMobile">
                 <h2 class="d-flex justify-content-center">Tabla general</h2>
                 <div class="col-12 d-flex justify-content-center">
@@ -79,7 +78,7 @@ use configuracion\general;
                                 <th scope="col">Promedio de SLP </th>
                                 <th scope="col">SLP por victoria</th>
                                 <th scope="col" style="border-top-right-radius: 1em;">
-                                    <div style="width: 2em; margin-right: 0;"><img src="media/copa.svg" alt="copa SLP"></div>
+                                    <div ><img style="width: 2em; margin-right: 0;" src="media/copa.svg" alt="copa SLP"></div>
                                 </th>
                             </tr>
                         </thead>
@@ -109,12 +108,14 @@ use configuracion\general;
                     </table>
                 </div>
             </div>
+            <div class="flex-center" style="padding-top:0;">
+                <p style="font-size: 0.8em;"> Las tablas se actualizarán en <b style="color:red;">X</b> segundos. </p>
+            </div>
         </div>
     </section>
     <section class="page-section" id="gruposSeccion">
         <div class="container px-4 px-lg-5 ">
             <h1 class="text-start mt-0">Grupos de becados</h1>
-            <p>Los grupos de becados permiten formar alianzas entre quienes reciben nuestra beca.</p>
             <div class="row gx-4 gx-lg-5 ">
 
                 <?php
@@ -165,8 +166,8 @@ use configuracion\general;
                                         <th scope='col' style='border-top-left-radius: 1em; justify-content: center;'>#</th>
                                         <th scope='col'>Nombre</th>
                                         <th scope='col' style='border-top-right-radius: 1em;'>
-                                            <div style='width: 2em; margin-right: 0;'><img src='media/copa.svg' alt='copa SLP'></div>
-                                        </th>
+                                    <div ><img style='width: 2em; margin-right: 0;' src='media/copa.svg' alt='copa SLP'></div>
+                                </th>
                                     </tr>
                                 </thead>
                                 <tbody>

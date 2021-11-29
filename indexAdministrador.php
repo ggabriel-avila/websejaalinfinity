@@ -193,10 +193,10 @@ if (!usuarioAdministrador::estaLogeado()) {
 	<!-- Quienes somos-->
 	<section class="page-section" id="QuienesSomosSeccion">
 		<div class="container px-4 px-lg-5">
-			<h1 class="text-start mt-0">Quienes somos</h1>
+			<h1 class="text-start mt-0">¿Quienes somos?</h1>
 			<div class="row gx-4 gx-lg-5"> <img class="col-lg-6 col-12" src="media/logo-extendido.svg" alt="Logo Sejaal Infinity">
 				<div class="col-lg-6 col-12">
-					<p>Somos un grupo de personas que decidimos invertir en un proyecto basado en los juegos NFT en este caso Axie Infinity con el objetivo de poder ayudar a personas dándoles las herramientas para adentrarse en este mundo y que estas a su vez nos ayuden a nosotros generando ingresos para hacer que el proyecto Seejal Infinity pueda llegar a más personas y crecer cada día más.</p>
+					<p>Somos una organización con el fin de ayudar a personas económicamente dándoles las herramientas para adentrarse en el mundo NFT, concretamente Axie Infinity. En este, contamos con una Academia de becas, donde primordialmente buscamos el desarrollo de nuestros becados y de la organización, expandiéndonos para llegar cada vez a más gente.</p>
 				</div>
 			</div>
 			<div class="flex-center">
@@ -430,7 +430,6 @@ if (!usuarioAdministrador::estaLogeado()) {
 		<section class="page-section" id="tablaGeneralSeccion">
 			<div class="container px-4 px-lg-5 " id="jugadoresId">
 				<h1 class="text-start mt-0">Ranking</h1>
-				<p>Las tablas se actualizarán de manera mensual, específicamente cada 1ro de mes.</p>
 				<div class="row gx-4 gx-lg-5 tablaMobile">
 					<h2 class="d-flex justify-content-center">Tabla general</h2>
 					<div class="col-12 d-flex justify-content-center">
@@ -459,6 +458,9 @@ if (!usuarioAdministrador::estaLogeado()) {
 						</table>
 					</div>
 				</div>
+				<div class="flex-center" style="padding-top:0;">
+                  <p style="font-size: 0.8em;"> Las tablas se actualizarán en <b style="color:red;">X</b> segundos. </p>
+                </div>
 			</div>
 		</section>
 		<!-- GRUPOS DE BECADOS-->

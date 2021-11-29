@@ -69,14 +69,11 @@ use configuracion\general;
   </section>
   <section class="page-section" id="QuienesSomosSeccion">
     <div class="container px-4 px-lg-5">
-      <h1 class="text-start mt-0">Quienes somos</h1>
+      <h1 class="text-start mt-0">¿Quienes somos?</h1>
       <div class="row gx-4 gx-lg-5">
         <img class="col-lg-6 col-12" src="media/logo-extendido.svg" alt="Logo Sejaal Infinity">
         <div class="col-lg-6 col-12">
-          <p>Somos un grupo de personas que decidimos invertir en un proyecto basado en los juegos NFT en este caso Axie
-            Infinity con el objetivo de poder ayudar a personas dándoles las herramientas para adentrarse en este mundo
-            y que estas a su vez nos ayuden a nosotros generando ingresos para hacer que el proyecto Seejal Infinity
-            pueda llegar a más personas y crecer cada día más.</p>
+          <p>Somos una organización con el fin de ayudar a personas económicamente dándoles las herramientas para adentrarse en el mundo NFT, concretamente Axie Infinity. En este, contamos con una Academia de becas, donde primordialmente buscamos el desarrollo de nuestros becados y de la organización, expandiéndonos para llegar cada vez a más gente.</p>
           </div>        
       </div>
       <div class="flex-center">
