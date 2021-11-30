@@ -74,11 +74,11 @@ use configuracion\general;
         <img class="col-lg-6 col-12" src="media/logo-extendido.svg" alt="Logo Sejaal Infinity">
         <div class="col-lg-6 col-12">
           <p>Somos una organización con el fin de ayudar a personas económicamente dándoles las herramientas para adentrarse en el mundo NFT, concretamente Axie Infinity. En este, contamos con una Academia de becas, donde primordialmente buscamos el desarrollo de nuestros becados y de la organización, expandiéndonos para llegar cada vez a más gente.</p>
-          </div>        
+        </div>
       </div>
       <div class="flex-center">
-                  <button > <a href="https://docs.google.com/forms/d/e/1FAIpQLSfm9WbmjPkamHD976TAUQh9BTUwpIKywv_b8ocufR78GfaLnA/viewform" target="_blank">Completá el formulario</a> </button>
-        </div>
+        <button> <a href="https://docs.google.com/forms/d/e/1FAIpQLSfm9WbmjPkamHD976TAUQh9BTUwpIKywv_b8ocufR78GfaLnA/viewform" target="_blank">Completá el formulario</a> </button>
+      </div>
     </div>
   </section>
   <section class="page-section" id="AnunciosSeccion">
@@ -106,13 +106,13 @@ use configuracion\general;
           </div>
         </div>
       </div>
-      <div class="flex-center">
-        <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ver más </button>
-      </div>
       <div class="collapse" id="collapseExample">
         <div class="card card-body ">
           <p class="flex-center">No hay más anuncios</p>
         </div>
+      </div>
+      <div class="flex-center">
+        <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="vermas1" onclick="expandir(this)">Ver más</button>
       </div>
     </div>
   </section>
@@ -122,7 +122,7 @@ use configuracion\general;
       <div class="row gx-4 gx-lg-5">
         <h2>-SLP mínimos y porcentaje</h2>
         <div class="col-lg-6 col-12">
-          <p><b>Primer mes:</b> El becado tendrá que hacer un mínimo de 3630 SLP, este número es menor que el de los otros meses, ya que los primeros días el becado deberá gastar sus energías para subir de nivel sus axies lo que no le permitirá ganar SLP jugando arena.  Este número se obtiene al sumar 75 SLP diarios la primera semana + 135 SLP diarios los otros días restantes del mes. Es decir, el becado podrá jugar la primera semana las 20 energías diarias en modo PvE y a partir de ahí deberá gastar sus energías jugando PvP para poder llegar a los 135 SLP diarios (en promedio).  <b>De estos 3630 SLP, el 30% serán para el becado y el 70% para Sejaal Infinity, todos los SLP excedentes a este número, le corresponderán 60% al becado y 40% a Sejaal Infinity. </b> </p>
+          <p><b>Primer mes:</b> El becado tendrá que hacer un mínimo de 3630 SLP, este número es menor que el de los otros meses, ya que los primeros días el becado deberá gastar sus energías para subir de nivel sus axies lo que no le permitirá ganar SLP jugando arena. Este número se obtiene al sumar 75 SLP diarios la primera semana + 135 SLP diarios los otros días restantes del mes. Es decir, el becado podrá jugar la primera semana las 20 energías diarias en modo PvE y a partir de ahí deberá gastar sus energías jugando PvP para poder llegar a los 135 SLP diarios (en promedio). <b>De estos 3630 SLP, el 30% serán para el becado y el 70% para Sejaal Infinity, todos los SLP excedentes a este número, le corresponderán 60% al becado y 40% a Sejaal Infinity. </b> </p>
         </div>
         <div class="col-lg-6 col-12">
           <p><b>Segundo mes en adelante: </b> El becado tendrá que hacer un mínimo de 4050 SLP, este número se obtiene al hacer un promedio de 135 SLP diarios. <b>De estos 4050 SLP el 40% serán para el becado y el 60% para Sejaal Infinity, todos los SLP excedentes a este número, le corresponderán 60% al becado y 40% a Sejaal Infinity </b> </p>
@@ -135,9 +135,6 @@ use configuracion\general;
         <div class="col-lg-6-img col-12">
           <img src="media/segundomes-grafico.svg" alt=" Segundo mes ganancia sejaal infinity">
         </div>
-      </div>
-      <div class="flex-center">
-        <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ver más </button>
       </div>
       <div class="collapse" id="collapseExample">
         <div class="row gx-4 gx-lg-5">
@@ -203,6 +200,9 @@ use configuracion\general;
           </div>
         </div>
       </div>
+      <div class="flex-center">
+        <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" id="vermas2" onclick="expandir(this)" aria-controls="collapseExample">Ver más</button>
+      </div>
     </div>
 
   </section>
@@ -228,6 +228,15 @@ use configuracion\general;
   <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
   <script src="<?= general::constante('url') ?>/js/scripts.js"></script>
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  <script>
+    function expandir(button){
+      if(button.textContent == 'Ver más'){
+        document.getElementById(button.id).textContent = 'Ver menos';
+      }else if(button.textContent == 'Ver menos'){
+        document.getElementById(button.id).textContent = 'Ver más';
+      }
+    }
+  </script>
 </body>
 
 </html>

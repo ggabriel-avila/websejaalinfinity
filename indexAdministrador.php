@@ -200,8 +200,8 @@ if (!usuarioAdministrador::estaLogeado()) {
 				</div>
 			</div>
 			<div class="flex-center">
-                  <button > <a href="https://docs.google.com/forms/d/e/1FAIpQLSfm9WbmjPkamHD976TAUQh9BTUwpIKywv_b8ocufR78GfaLnA/viewform" target="_blank">Completá el formulario</a> </button>
-        </div>
+				<button> <a href="https://docs.google.com/forms/d/e/1FAIpQLSfm9WbmjPkamHD976TAUQh9BTUwpIKywv_b8ocufR78GfaLnA/viewform" target="_blank">Completá el formulario</a> </button>
+			</div>
 		</div>
 	</section>
 	<!-- ANUNCIOS-->
@@ -302,12 +302,12 @@ if (!usuarioAdministrador::estaLogeado()) {
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-									<button class="btn btn-primary" id="enviar3" class="boton" @click="modificar($event)">Enviar</button>
+									<button class="btn btn-primary" id="enviar3" class="boton" @click="modificar($event)">Modificar</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ver más </button>
+					<button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" id="vermas1" onclick="expandir(this)" aria-controls="collapseExample">Ver más</button>
 				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="container px-4 px-lg-5">
@@ -358,9 +358,6 @@ if (!usuarioAdministrador::estaLogeado()) {
 					<div class="col-lg-6-img col-12"> <img src="media/segundomes-grafico.svg" alt=" Segundo mes ganancia sejaal infinity"> </div>
 				</div>
 				<!-- VER MAS-->
-				<div class="flex-center">
-					<button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ver más </button>
-				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="row gx-4 gx-lg-5">
 						<h2>-Grupos</h2>
@@ -423,6 +420,9 @@ if (!usuarioAdministrador::estaLogeado()) {
 						</div>
 					</div>
 				</div>
+				<div class="flex-center">
+					<button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" id="vermas2" onclick="expandir(this)" aria-controls="collapseExample">Ver más</button>
+				</div>
 			</div>
 		</section>
 		<!-- Fin Información de becas-->
@@ -484,7 +484,12 @@ if (!usuarioAdministrador::estaLogeado()) {
 										<input type="text" id="tituloGrupo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="100" placeholder="Introduce como máximo 50 caracteres" required> </div>
 									<div class="form-group">
 										<label>Buscador</label>
-										<input type="text" class="form-control" id="agregarJugador"> </div>
+										<div v-for="jugador,i in jugadores" class="mt-1">
+											<label :for="'jugador__'+i">{{jugador.nombre}}</label>
+											<input type="checkbox" :id="'jugador__'+i" name="agregarJugador" :value="jugador.id">
+											<br>
+										</div>
+									</div>
 								</form>
 							</div>
 							<div class="modal-footer">
@@ -557,18 +562,16 @@ if (!usuarioAdministrador::estaLogeado()) {
 													<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="100" required id="grupoTituloModificar"> </div>
 													<div class="row gx-4">
 														<div class="col-lg-12">
-                              <div class="form-group">
-                                <input type="hidden" id="grupoId">
-                                <label>Jugadores</label>
-                                <input type="form-control" value="" class="form-control" id="jugadoresImpresos">
-                              </div>
+															<input type="hidden" id="grupoId">
+															<label>Buscador</label>
+															<div id="contenedorModificar"></div>
 														</div>
 													</div>
 											</form>
 										</div>
 										<div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-secondary" @click="modificar(grupo.id)">enviar</button>
+                    <button type="button" class="btn btn-secondary" @click="modificar(grupo.id)">modificar</button>
 									</div>
 								</div>
 							</div>
@@ -577,7 +580,7 @@ if (!usuarioAdministrador::estaLogeado()) {
 				</div>
 			</div>
 			<div class="flex-center">
-				<button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ver más </button>
+				<button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" id="vermas3" onclick="expandir(this)" aria-controls="collapseExample">Ver más</button>
 			</div>
 			<div class="collapse" id="collapseExample">
 				<div class="container">
@@ -665,6 +668,13 @@ if (!usuarioAdministrador::estaLogeado()) {
 		<script src="<?= general::constante('url') ?>/js/indexAdministrador/jugadores.js"></script>
 		<script src="<?= general::constante('url') ?>/js/indexAdministrador/gruposBecados.js"></script>
 		<script>
+			function expandir(button){
+			if(button.textContent == 'Ver más'){
+				document.getElementById(button.id).textContent = 'Ver menos';
+			}else if(button.textContent == 'Ver menos'){
+				document.getElementById(button.id).textContent = 'Ver más';
+			}
+			}
 		</script>
 	</body>
 

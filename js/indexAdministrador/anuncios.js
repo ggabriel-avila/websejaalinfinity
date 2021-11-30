@@ -29,7 +29,6 @@ var anunciosVue = new Vue({
             })
         },
         agregar: function (button) {
-            console.log(button.target);
             $('#' + button.target.id).attr('disabled', 'disabled')
             $('#' + button.target.id).html(`
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -44,6 +43,7 @@ var anunciosVue = new Vue({
             this.$http.post(url, formData).then((response) => {
                 $('#' + button.target.id).removeAttr('disabled')
                 $('#' + button.target.id).html(`Aceptar`)
+                $('#agregarAnuncio').modal('hide');
                 herramientaVue.alertas('correcto', 'se creo el nuevo anuncio exitosamente');
                 this.obtener()
             }, response => {
@@ -67,7 +67,8 @@ var anunciosVue = new Vue({
             formData.append('descripcion', this.descripcion);
             this.$http.post(url, formData).then((response) => {
                 $('#' + button.target.id).removeAttr('disabled')
-                $('#' + button.target.id).html(`Aceptar`)
+                $('#' + button.target.id).html(`Modificar`)
+                $('#modificarAnuncio').modal('hide');
                 herramientaVue.alertas('correcto', 'se modifico el anuncio exitosamente');
                 this.obtener()
             }, response => {

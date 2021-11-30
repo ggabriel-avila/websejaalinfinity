@@ -180,13 +180,13 @@ use configuracion\general;
                 ?>
             </div>
         </div>
-        <div class="flex-center">
-            <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ver más </button>
-        </div>
         <div class="collapse" id="collapseExample">
             <div class="card card-body ">
                 <p class="flex-center">No hay más grupos</p>
             </div>
+        </div>
+        <div class="flex-center">
+            <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" id="vermas3" onclick="expandir(this)" aria-controls="collapseExample">Ver más</button>
         </div>
     </section>
 
@@ -211,6 +211,15 @@ use configuracion\general;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <script src="<?= general::constante('url') ?>/js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+		<script>
+			function expandir(button){
+			if(button.textContent == 'Ver más'){
+				document.getElementById(button.id).textContent = 'Ver menos';
+			}else if(button.textContent == 'Ver menos'){
+				document.getElementById(button.id).textContent = 'Ver más';
+			}
+			}
+		</script>
 </body>
 
 </html>

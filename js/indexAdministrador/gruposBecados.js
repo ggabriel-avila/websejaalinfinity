@@ -1,42 +1,14 @@
 var gruposBecadosVue = new Vue({
     el: '#gruposSeccion',
     data: {
-        grupos: []
+        grupos: [],
+        jugadores: [],
+        jugadoresModificar:[]
     },
     created: function () {
         this.obtener();
         let url = document.getElementById('apiJugadores').value;
         this.$http.get(url).then((respuesta) => {
-            let vectorJugadores = [];
-            for (jugador of respuesta.data.data) {
-                vectorJugadores.push(`${jugador.nombre} - ${jugador.id}`)
-            }
-            var input = document.getElementById('agregarJugador');
-            tagify = new Tagify(input, {
-                whitelist: vectorJugadores,
-                originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(','),
-                dropdown: {
-                    classname: "color-blue",
-                    enabled: 0,
-                    maxItems: 5,
-                    position: "text",
-                    closeOnSelect: false,
-                    highlightFirst: true
-                }
-            });
-            var input = document.getElementById('jugadoresImpresos');
-            tagify = new Tagify(input, {
-                whitelist: vectorJugadores,
-                originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(','),
-                dropdown: {
-                    classname: "color-blue",
-                    enabled: 0,
-                    maxItems: 5,
-                    position: "text",
-                    closeOnSelect: false,
-                    highlightFirst: true
-                }
-            });
             this.jugadores = respuesta.data.data
         }, respuesta => {
             console.log(respuesta)
@@ -53,7 +25,13 @@ var gruposBecadosVue = new Vue({
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Espere...
             `)
-            let jugadoresSeleccionados = document.getElementById('agregarJugador').value;
+            let jugadoresSeleccionados = '';
+            for(respaldo of document.getElementsByName('agregarJugador')){
+                if(respaldo.checked){
+                    jugadoresSeleccionados += 'IGNORE - ' + respaldo.value + ',';
+                }
+            }
+            jugadoresSeleccionados = jugadoresSeleccionados.substring(0, jugadoresSeleccionados.length - 1);
             let titulo = document.getElementById('tituloGrupo').value;
             let formData = new FormData();
             formData.append('jugadores', jugadoresSeleccionados);
@@ -62,6 +40,7 @@ var gruposBecadosVue = new Vue({
             this.$http.post(url, formData).then((respuesta) => {
                 $('#' + button.target.id).removeAttr('disabled')
                 $('#' + button.target.id).html(`Aceptar`)
+                $('#agregarGrupo').modal('hide');
                 this.obtener();
                 herramientaVue.alertas('correcto', 'grupo creado exitosamente');
             }, respuesta => {
@@ -90,20 +69,48 @@ var gruposBecadosVue = new Vue({
             })
         },
         abrirModalModificar:function(jugadores, titulo, grupoId){
-            let html = ``;
-            for(jugador of jugadores){
-                console.log(jugador.id);
-                html += `${jugador.nombre} - ${jugador.id},`;
+            let html = '';
+            let agregar = false;
+            for(jugador of this.jugadores){
+                agregar = false;
+                for(jugadorSeleccionado of jugadores){
+                    if(jugadorSeleccionado.id == jugador.id){
+                        agregar = true
+                    }
+                }
+                if(agregar){
+                    html += `
+                        <div class="mt-1">
+                            <label>${jugador.nombre}</label>
+                            <input type="checkbox" checked name="modificarJugador" value="${jugador.id}">
+                            <br>
+                        </div>
+                    `;
+                }else{
+                    html += `
+                        <div class="mt-1">
+                            <label>${jugador.nombre}</label>
+                            <input type="checkbox" name="modificarJugador" value="${jugador.id}">
+                            <br>
+                        </div>
+                    `;
+                }
             }
             $('#grupoId').val(grupoId)
+            $('#contenedorModificar').html(html);
             $('#grupoTituloModificar').val(titulo)
-            $('#jugadoresImpresos').val(html)
             $('#modificargrupo').modal('show');
         },
         modificar:function(){
             let url = document.getElementById('apiGrupos').value;
             let grupoId = document.getElementById('grupoId').value;
-            let jugadoresSeleccionados = document.getElementById('jugadoresImpresos').value;
+            let jugadoresSeleccionados = '';
+            for(respaldo of document.getElementsByName('modificarJugador')){
+                if(respaldo.checked){
+                    jugadoresSeleccionados += 'IGNORE - ' + respaldo.value + ',';
+                }
+            }
+            jugadoresSeleccionados = jugadoresSeleccionados.substring(0, jugadoresSeleccionados.length - 1);
             let titulo = document.getElementById('grupoTituloModificar').value;
             let formData = new FormData();
             formData.append('id', grupoId);
@@ -111,6 +118,7 @@ var gruposBecadosVue = new Vue({
             formData.append('titulo', titulo);
             formData.append('method', 'modificar');
             this.$http.post(url, formData).then((respuesta) => {
+                $('#modificargrupo').modal('hide');
                 this.obtener();
                 herramientaVue.alertas('correcto', 'grupo modificado exitosamente');
             }, respuesta => {

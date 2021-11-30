@@ -29,6 +29,7 @@ var enlacesVue = new Vue({
             this.$http.post(url, formData).then((response) => {
                 $('#' + button.target.id).removeAttr('disabled')
                 $('#' + button.target.id).html(`Aceptar`)
+                $('#editarEnlace').modal('hide');
                 herramientaVue.alertas('correcto', 'se realizo el cambio exitosamente');
             }, response => {
                 $('#' + button.target.id).removeAttr('disabled')
