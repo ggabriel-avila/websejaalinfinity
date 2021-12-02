@@ -38,6 +38,10 @@ var gruposBecadosVue = new Vue({
             formData.append('titulo', titulo);
             formData.append('method', 'crear');
             this.$http.post(url, formData).then((respuesta) => {
+                document.getElementById('tituloGrupo').value = '';
+                for(respaldo of document.getElementsByName('agregarJugador')){
+                    respaldo.checked = false;
+                }
                 $('#' + button.target.id).removeAttr('disabled')
                 $('#' + button.target.id).html(`Aceptar`)
                 $('#agregarGrupo').modal('hide');

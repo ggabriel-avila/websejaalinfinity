@@ -1,6 +1,6 @@
 <?php
 
-require 'core/configuracion/configuracion.php';
+include 'core/configuracion/baseDeDatos.php';
 require 'core/seguridad/usuarioAdministrador.php';
 
 use configuracion\general;
@@ -307,7 +307,6 @@ if (!usuarioAdministrador::estaLogeado()) {
 							</div>
 						</div>
 					</div>
-					<button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" id="vermas1" onclick="expandir(this)" aria-controls="collapseExample">Ver más</button>
 				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="container px-4 px-lg-5">
@@ -337,6 +336,9 @@ if (!usuarioAdministrador::estaLogeado()) {
 							<p class="flex-center">No hay más anuncios</p>
 						</div>
 					</div>
+				</div>
+				<div class="col-12 text-center">
+					<button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" id="vermas1" onclick="expandir(this)" aria-controls="collapseExample">Ver más</button>
 				</div>
 			</div>
 		</section>
@@ -459,7 +461,15 @@ if (!usuarioAdministrador::estaLogeado()) {
 					</div>
 				</div>
 				<div class="flex-center" style="padding-top:0;">
-                  <p style="font-size: 0.8em;"> Las tablas se actualizarán en <b style="color:red;">X</b> segundos. </p>
+					<?php
+					$conexion = new baseDeDatos();
+					$sql = "SELECT * FROM actualizaciones LIMIT 1";
+					$conexion->conectar();
+					$datos = $conexion->conexion->query($sql);
+					$datos = $datos->fetch_assoc();
+					$conexion->desconectar();
+					?>
+                <p style="font-size: 0.8em;"> última actualización <b style="color:red;"><?= date("d/m/Y H:i:s", strtotime($datos['jugadores'])) ?></b></p>
                 </div>
 			</div>
 		</section>
@@ -494,7 +504,7 @@ if (!usuarioAdministrador::estaLogeado()) {
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-								<button type="button" class="btn btn-primary" id="enviar" class="boton" @click="crear($event)">Aceptar</button>
+								<button type="button" class="btn btn-primary" id="enviar" class="boton" @click="crear($event)">Crear</button>
 							</div>
 						</div>
 					</div>

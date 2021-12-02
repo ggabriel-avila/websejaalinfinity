@@ -8,6 +8,7 @@ var anunciosVue = new Vue({
         descripcion: ''
     },
     created: function () {
+        this.fecha = new Date().toISOString().substring(0, 10);;
         this.obtener();
     },
     methods: {
@@ -91,6 +92,7 @@ var anunciosVue = new Vue({
                 $('#' + button.id).removeAttr('disabled')
                 $('#' + button.id).html(`Aceptar`)
                 herramientaVue.alertas('correcto', 'se elimino el anuncio exitosamente');
+                $('#eliminarAnuncio').modal('hide');
                 this.obtener()
             }, response => {
                 $('#' + button.id).removeAttr('disabled')

@@ -29,6 +29,20 @@ class scraping extends baseDeDatos
         $this->actualizarDatos();
         $this->verificarExisten();
         $this->insertarNuevosDatos();
+        $this->actualizar();
+    }
+
+    
+    public function actualizar()
+    {
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $now = date('Y-m-d H:i:s');
+        $this->conectar();
+        $query = "TRUNCATE actualizaciones";
+        $this->conexion->query($query);
+        $query = "INSERT INTO actualizaciones(jugadores) VALUES('$now')";
+        $this->conexion->query($query);
+        $this->desconectar();
     }
 
     

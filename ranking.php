@@ -26,15 +26,15 @@ use configuracion\general;
         <div class="d-flex justify-content-end" style="background-color:black;">
             <div class="RedesHeader d-none d-lg-block">
                 <?php
-                    $conexion = new baseDeDatos();
-                    $conexion->conectar();
-                    $sql = "SELECT * FROM enlaces";
-                    $datosBD = $conexion->conexion->query($sql);
-                    $datos = $datosBD->fetch_all(MYSQLI_ASSOC);
-                    $conexion->desconectar();
-                    foreach($datos as $dato){
-                        echo "<a title='Discord' href='$dato[enlace]'><img src='$dato[imagen]' alt='logo'></a>";
-                    }
+                $conexion = new baseDeDatos();
+                $conexion->conectar();
+                $sql = "SELECT * FROM enlaces";
+                $datosBD = $conexion->conexion->query($sql);
+                $datos = $datosBD->fetch_all(MYSQLI_ASSOC);
+                $conexion->desconectar();
+                foreach ($datos as $dato) {
+                    echo "<a title='Discord' href='$dato[enlace]'><img src='$dato[imagen]' alt='logo'></a>";
+                }
                 ?>
             </div>
         </div>
@@ -78,14 +78,14 @@ use configuracion\general;
                                 <th scope="col">Promedio de SLP </th>
                                 <th scope="col">SLP por victoria</th>
                                 <th scope="col" style="border-top-right-radius: 1em;">
-                                    <div ><img style="width: 2em; margin-right: 0;" src="media/copa.svg" alt="copa SLP"></div>
+                                    <div><img style="width: 2em; margin-right: 0;" src="media/copa.svg" alt="copa SLP"></div>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $conexion = new baseDeDatos();
-                            $sql = "SELECT * FROM jugadores ORDER BY cantidad_spl_victoria DESC";
+                            $sql = "SELECT * FROM jugadores ORDER BY cantidad_copas DESC";
                             $conexion->conectar();
                             $datos = $conexion->conexion->query($sql);
                             $datos = $datos->fetch_all(MYSQLI_ASSOC);
@@ -109,7 +109,16 @@ use configuracion\general;
                 </div>
             </div>
             <div class="flex-center" style="padding-top:0;">
-                <p style="font-size: 0.8em;"> Las tablas se actualizarán en <b style="color:red;">X</b> segundos. </p>
+
+                <?php
+                $conexion = new baseDeDatos();
+                $sql = "SELECT * FROM actualizaciones LIMIT 1";
+                $conexion->conectar();
+                $datos = $conexion->conexion->query($sql);
+                $datos = $datos->fetch_assoc();
+                $conexion->desconectar();
+                ?>
+                <p style="font-size: 0.8em;"> última actualización <b style="color:red;"><?= date("d/m/Y H:i:s", strtotime($datos['jugadores'])) ?></b></p>
             </div>
         </div>
     </section>
@@ -120,7 +129,7 @@ use configuracion\general;
 
                 <?php
                 $conexion = new baseDeDatos();
-                $sql = "SELECT * FROM jugadores ORDER BY cantidad_spl_victoria DESC";
+                $sql = "SELECT * FROM jugadores ORDER BY cantidad_copas DESC";
                 $conexion->conectar();
 
                 $sql = "SELECT * FROM grupo_becados";
@@ -128,7 +137,7 @@ use configuracion\general;
                 $gruposBD = $gruposBD->fetch_all(MYSQLI_ASSOC);
                 foreach ($gruposBD as $grupo) {
                     $jugadores = [];
-                    $sql = "SELECT * FROM jugadores WHERE grupo_becado_id = $grupo[id] ORDER BY cantidad_spl_victoria DESC";
+                    $sql = "SELECT * FROM jugadores WHERE grupo_becado_id = $grupo[id] ORDER BY cantidad_copas DESC";
                     $jugadoresBD = $conexion->conexion->query($sql);
                     $jugadoresBD = $jugadoresBD->fetch_all(MYSQLI_ASSOC);
                     foreach ($jugadoresBD as $jugador) {
@@ -146,7 +155,7 @@ use configuracion\general;
                 foreach ($respuesta as $dato) {
                     $armandoJugador = '';
                     $contador = 0;
-                    foreach($dato['jugadores'] as $jugador){
+                    foreach ($dato['jugadores'] as $jugador) {
                         $contador = $contador + 1;
                         $armandoJugador .= "
                             <tr>
@@ -155,7 +164,6 @@ use configuracion\general;
                                 <td>$jugador[cantidad_copas]</td>
                             </tr>
                         ";
-
                     }
                     echo "
                         <div class='col-12 col-lg-6'>
@@ -198,10 +206,17 @@ use configuracion\general;
             <h2>Copyright © 2021 Sejaal Infinity</h2>
         </div>
         <div class="logoRedesHeader container" style="display:flex; justify-content: center; margin-top:1.5em;">
-            <a title="Discord" href="https://discord.com/invite/EYDAWQErKW"><img src="media/discord.svg" alt="discord logo"></a>
-            <a title="Instagram" href="https://www.instagram.com/sejaalinfinity/"><img src="media/instagram.svg" alt="Instagram logo"></a>
-            <a title="Twitter" href="https://twitter.com/SejaalInfinity"><img src="media/twitter.svg" alt="twitter logo"></a>
-            <a title="Twitch" href="https://twitch.tv/"><img src="media/twitch.svg" alt="twitch logo"></a>
+            <?php
+                $conexion = new baseDeDatos();
+                $conexion->conectar();
+                $sql = "SELECT * FROM enlaces";
+                $datosBD = $conexion->conexion->query($sql);
+                $datos = $datosBD->fetch_all(MYSQLI_ASSOC);
+                $conexion->desconectar();
+                foreach ($datos as $dato) {
+                    echo "<a href='$dato[enlace]'><img src='$dato[imagen]' alt='logo'></a>";
+                }
+            ?>
         </div>
         <div class="text-center small">
             <h3>Diseñado por Gabriel Avila 2021</h3>
@@ -211,16 +226,15 @@ use configuracion\general;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <script src="<?= general::constante('url') ?>/js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-		<script>
-			function expandir(button){
-			if(button.textContent == 'Ver más'){
-				document.getElementById(button.id).textContent = 'Ver menos';
-			}else if(button.textContent == 'Ver menos'){
-				document.getElementById(button.id).textContent = 'Ver más';
-			}
-			}
-		</script>
+    <script>
+        function expandir(button) {
+            if (button.textContent == 'Ver más') {
+                document.getElementById(button.id).textContent = 'Ver menos';
+            } else if (button.textContent == 'Ver menos') {
+                document.getElementById(button.id).textContent = 'Ver más';
+            }
+        }
+    </script>
 </body>
 
 </html>
-

@@ -85,30 +85,67 @@ use configuracion\general;
     <div class="container px-4 px-lg-5">
       <h1 class="text-start mt-0">Anuncios</h1>
       <div class="row gx-4 gx-lg-5-an">
-        <div class="col-lg-6 col-12 card">
-          <div class="anuncios ">
-            <div class="card-body">
-              <h3>Ganadores del mes de Octubre</h3>
-              <h4> <span class="badge bg-light text-dark">NUEVO</span> 31/10/2021</h4>
-              <p class="card-text">Quedaron como ganadores de este mes Bruno Bataglini, Joel Vergara, Nanytio, Karou y
-                Danny. ¡Felicidades chicos!</p>
+        <?php
+        $conexion = new baseDeDatos();
+        $conexion->conectar();
+        $sql = "SELECT * FROM anuncios ORDER BY id DESC";
+        $datosBD = $conexion->conexion->query($sql);
+        $datos = $datosBD->fetch_all(MYSQLI_ASSOC);
+        $conexion->desconectar();
+        $contador = 1;
+        foreach ($datos as $dato) :
+          if ($contador <= 2) :
+            $contador++;
+        ?>
+            <div class="col-lg-6 col-12 card">
+              <div class="anuncios ">
+                <div class="card-body">
+                  <h3><?= $dato['titulo'] ?></h3>
+                  <h4> <span class="badge bg-light text-dark">NUEVO</span> <?= $dato['fecha'] ?></h4>
+                  <p class="card-text"><?= $dato['descripcion'] ?></p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-12 card">
-          <div class="anuncios ">
-            <div class="card-body">
-              <h3>Ganadores del mes de Octubre</h3>
-              <h4> <span class="badge bg-light text-dark">NUEVO</span> 31/10/2021</h4>
-              <p class="card-text">Quedaron como ganadores de este mes Bruno Bataglini, Joel Vergara, Nanytio, Karou y
-                Danny. ¡Felicidades chicos!</p>
-            </div>
-          </div>
-        </div>
+        <?php
+          endif;
+        endforeach;
+        ?>
       </div>
       <div class="collapse" id="collapseExample">
-        <div class="card card-body ">
-          <p class="flex-center">No hay más anuncios</p>
+        <div class="row gx-4 gx-lg-5-an">
+          <?php
+          $conexion = new baseDeDatos();
+          $conexion->conectar();
+          $sql = "SELECT * FROM anuncios ORDER BY id DESC";
+          $datosBD = $conexion->conexion->query($sql);
+          $datos = $datosBD->fetch_all(MYSQLI_ASSOC);
+          $conexion->desconectar();
+          $contador = 0;
+          if (count($datos) > 2) :
+            foreach ($datos as $dato) :
+              $contador++;
+              if ($contador >= 3) :
+          ?>
+                <div class="col-lg-6 col-12 card">
+                  <div class="anuncios ">
+                    <div class="card-body">
+                      <h3><?= $dato['titulo'] ?></h3>
+                      <h4> <span class="badge bg-light text-dark">NUEVO</span> <?= $dato['fecha'] ?></h4>
+                      <p class="card-text"><?= $dato['descripcion'] ?></p>
+                    </div>
+                  </div>
+                </div>
+            <?php
+              endif;
+            endforeach;
+          else :
+            ?>
+            <div class="card card-body ">
+              <p class="flex-center">No hay más anuncios</p>
+            </div>
+          <?php
+          endif;
+          ?>
         </div>
       </div>
       <div class="flex-center">
@@ -215,10 +252,17 @@ use configuracion\general;
       <h2>Copyright © 2021 Sejaal Infinity</h2>
     </div>
     <div class="logoRedesHeader container" style="display:flex; justify-content: center; margin-top:1.5em;">
-      <a title="Discord" href="https://discord.com/invite/EYDAWQErKW"><img src="media/discord.svg" alt="discord logo"></a>
-      <a title="Instagram" href="https://www.instagram.com/sejaalinfinity/"><img src="media/instagram.svg" alt="Instagram logo"></a>
-      <a title="Twitter" href="https://twitter.com/SejaalInfinity"><img src="media/twitter.svg" alt="twitter logo"></a>
-      <a title="Twitch" href="https://twitch.tv/"><img src="media/twitch.svg" alt="twitch logo"></a>
+      <?php
+      $conexion = new baseDeDatos();
+      $conexion->conectar();
+      $sql = "SELECT * FROM enlaces";
+      $datosBD = $conexion->conexion->query($sql);
+      $datos = $datosBD->fetch_all(MYSQLI_ASSOC);
+      $conexion->desconectar();
+      foreach ($datos as $dato) {
+        echo "<a href='$dato[enlace]'><img src='$dato[imagen]' alt='logo'></a>";
+      }
+      ?>
     </div>
     <div class="text-center small">
       <h3>Diseñado por Gabriel Avila 2021</h3>
@@ -229,10 +273,10 @@ use configuracion\general;
   <script src="<?= general::constante('url') ?>/js/scripts.js"></script>
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
   <script>
-    function expandir(button){
-      if(button.textContent == 'Ver más'){
+    function expandir(button) {
+      if (button.textContent == 'Ver más') {
         document.getElementById(button.id).textContent = 'Ver menos';
-      }else if(button.textContent == 'Ver menos'){
+      } else if (button.textContent == 'Ver menos') {
         document.getElementById(button.id).textContent = 'Ver más';
       }
     }

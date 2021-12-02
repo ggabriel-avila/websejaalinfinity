@@ -34,6 +34,8 @@ class grupos extends baseDeDatos
         $this->conectar();
         if (strlen($this->jugadores) > 0) {
             $jugadores = explode(',', $this->jugadores);
+            $sql = "UPDATE jugadores SET grupo_becado_id = NULL WHERE grupo_becado_id = $id";
+            $this->conexion->query($sql);
             foreach ($jugadores as $jugador) {
                 $idJugador = explode(' - ', $jugador)[1];
                 $sql = "UPDATE jugadores SET grupo_becado_id = $id WHERE id = $idJugador";
@@ -43,7 +45,6 @@ class grupos extends baseDeDatos
             }
         }else{
             $sql = "UPDATE jugadores SET grupo_becado_id = NULL WHERE grupo_becado_id = $id";
-            $this->conexion->query($sql)or die($this->conexion->error);
             if (!$datosBD = $this->conexion->query($sql)) {
                 apiRespuesta::incorrecto(500, 'No se pudo crear los grupos ' . $this->conexion->error);
             }
