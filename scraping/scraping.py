@@ -29,7 +29,7 @@ class bot:
     def iniciar_bucle(self):
         time.sleep(1)
         script = open('./scripts.js', 'r', encoding='UTF-8').read()
-        pyautogui.typewrite(script, 0.03)
+        pyautogui.typewrite(script, 0.1)
         pyautogui.press('enter')
         time.sleep(10)
 

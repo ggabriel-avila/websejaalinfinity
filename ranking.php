@@ -93,9 +93,10 @@ use configuracion\general;
                             $contador = 0;
                             foreach ($datos as $dato) {
                                 $contador = $contador + 1;
+                                $primeroMarcado = $contador == 1 ? 'table-success' : '';
                                 echo "
                                     <tr>
-                                        <th scope='row'>$contador</th>
+                                        <th scope='row' class='$primeroMarcado'>$contador</th>
                                         <td>$dato[nombre]</td>
                                         <td>$dato[promedio_spl]</td>
                                         <td>$dato[cantidad_spl_victoria]</td>
@@ -157,9 +158,10 @@ use configuracion\general;
                     $contador = 0;
                     foreach ($dato['jugadores'] as $jugador) {
                         $contador = $contador + 1;
+                        $primeroMarcado = $contador == 1 ? 'table-success' : '';
                         $armandoJugador .= "
                             <tr>
-                                <th scope='row'>$contador</th>
+                                <th scope='row' class='$primeroMarcado'>$contador</th>
                                 <td>$jugador[nombre]</td>
                                 <td>$jugador[cantidad_copas]</td>
                             </tr>

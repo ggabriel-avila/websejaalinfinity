@@ -18,7 +18,7 @@ class scraping extends baseDeDatos
      */
     public function __construct(string $datos = '')
     {
-        if(strlen($datos) == 0){
+        if (strlen($datos) == 0) {
             apiRespuesta::incorrecto(403, 'Acceso denegado');
         }
         try {
@@ -32,7 +32,7 @@ class scraping extends baseDeDatos
         $this->actualizar();
     }
 
-    
+
     public function actualizar()
     {
         date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -45,20 +45,19 @@ class scraping extends baseDeDatos
         $this->desconectar();
     }
 
-    
+
     public function actualizarDatos()
     {
         $this->conectar();
         $datos = [];
-        foreach($this->datos as $dato){
-            $nombre = $dato['nombre'];
-            $promedioSpl = $dato['promedio_spl'];
-            $cantidadCopas = $dato['cantidad_copas'];
-            $cantidadSplVictoria = $dato['cantidad_spl_victoria'];
+        foreach ($this->datos as $dato) {
+            $nombre = $this->conexion->real_escape_string($dato['nombre']);
+            $promedioSpl = $this->conexion->real_escape_string($dato['promedio_spl']);
+            $cantidadCopas = $this->conexion->real_escape_string($dato['cantidad_copas']);
+            $cantidadSplVictoria = $this->conexion->real_escape_string($dato['cantidad_spl_victoria']);
             $query = "UPDATE jugadores SET promedio_spl = '$promedioSpl', cantidad_copas = '$cantidadCopas', cantidad_spl_victoria = '$cantidadSplVictoria' WHERE nombre = '$nombre' LIMIT 1";
-            echo $query;
             $this->conexion->query($query);
-            if($this->conexion->affected_rows == 0){
+            if ($this->conexion->affected_rows == 0) {
                 $datos[] = [
                     'nombre' => $nombre,
                     'promedio_spl' => $promedioSpl,
@@ -73,16 +72,16 @@ class scraping extends baseDeDatos
     public function verificarExisten()
     {
         $this->conectar();
-        $datos = [];
-        foreach($this->datos as $dato){
+        $datosExistentes = [];
+        foreach ($this->datos as $dato) {
             $nombre = $dato['nombre'];
             $promedioSpl = $dato['promedio_spl'];
             $cantidadCopas = $dato['cantidad_copas'];
             $cantidadSplVictoria = $dato['cantidad_spl_victoria'];
-            $query = "SELECT * FROM jugadores WHERE nombre = '$nombre'";
+            $query = "SELECT * FROM jugadores WHERE nombre = '$nombre' LIMIT 1";
             $datosBD = $this->conexion->query($query);
-            if($datosBD->num_rows == 0){
-                $datos[] = [
+            if ($datosBD->num_rows == 0) {
+                $datosExistentes[] = [
                     'nombre' => $nombre,
                     'promedio_spl' => $promedioSpl,
                     'cantidad_copas' => $cantidadCopas,
@@ -90,15 +89,40 @@ class scraping extends baseDeDatos
                 ];
             }
         }
+
+
+
+        $query = "SELECT id,nombre FROM jugadores";
+        $datosBD = $this->conexion->query($query);
+        $datosBD = $datosBD->fetch_all(MYSQLI_ASSOC);
+        foreach ($datosBD as $datos) {
+            $datosFiltradosDB[] = [
+                'id' => $datos['id'],
+                'nombre' => $datos['nombre']
+            ];
+        }
+
+        foreach ($this->datos as $datosScraping) {
+            $datoScraping[] = $datosScraping['nombre'];
+        }
+
+        foreach ($datosFiltradosDB as $datosFiltrado) {
+            if (!in_array($datosFiltrado['nombre'], $datoScraping)) {
+                $query = "DELETE FROM jugadores WHERE id = $datosFiltrado[id] LIMIT 1";
+                echo $query;
+                $this->conexion->query($query);
+            }
+        }
+
+        $this->datos = $datosExistentes;
         $this->desconectar();
-        $this->datos = $datos;
     }
 
     public function insertarNuevosDatos()
     {
         $this->conectar();
-        if($this->datos != null){
-            foreach($this->datos as $dato){
+        if ($this->datos != null) {
+            foreach ($this->datos as $dato) {
                 $nombre = $dato['nombre'];
                 $promedioSpl = $dato['promedio_spl'];
                 $cantidadCopas = $dato['cantidad_copas'];

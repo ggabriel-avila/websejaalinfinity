@@ -275,7 +275,7 @@ if (!usuarioAdministrador::estaLogeado()) {
 									<h4>¿Desea eliminar permanentemente este anuncio?</h4> </div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-									<button class="btn btn-primary" id="enviar" class="boton" onclick="anunciosVue.eliminar(this)">Enviar</button>
+									<button class="btn btn-primary" id="enviar" class="boton" onclick="anunciosVue.eliminar(this)">Eliminar</button>
 								</div>
 							</div>
 						</div>
